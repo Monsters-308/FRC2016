@@ -12,6 +12,8 @@ package org.usfirst.frc308.FRC2016.subsystems;
 
 import org.usfirst.frc308.FRC2016.RobotMap;
 import org.usfirst.frc308.FRC2016.commands.*;
+
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -50,17 +52,4 @@ public class Chasis extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
-	public void setupMotors() {
-		leftFront.changeControlMode(TalonControlMode.PercentVbus);
-		rightFront.changeControlMode(TalonControlMode.PercentVbus);
-		leftRear.changeControlMode(TalonControlMode.PercentVbus);
-		rightRear.changeControlMode(TalonControlMode.PercentVbus);
-	}
-
-	public void moveRobot(double power, double turning) {
-		leftFront.set((power + turning) / 2.0);
-		rightFront.set((power - turning) / 2.0);
-		leftRear.set((power + turning) / 2.0);
-		rightRear.set((power - turning) / 2.0);
-	}
 }

@@ -14,7 +14,7 @@ package org.usfirst.frc308.FRC2016.subsystems;
 import org.usfirst.frc308.FRC2016.RobotMap;
 import org.usfirst.frc308.FRC2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
-
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -49,5 +49,13 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+
+	public void setupShooter() {
+		shootMotor1.changeControlMode(TalonControlMode.PercentVbus);
+	}
+	
+	public void setShootPower(double power){
+		shootMotor1.set(power);
+	}
 }
 
