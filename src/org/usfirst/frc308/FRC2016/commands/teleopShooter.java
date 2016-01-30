@@ -44,11 +44,18 @@ public class teleopShooter extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.shooter.setShootPower(Robot.oi.joystick1.getThrottle());
-    	//if buton is pressed, call shoot function
-    	//if shooter isn't at speed, call revupshooter()
-    	//otherwise, call shootball()
+    	//call adjustBall()
     	
-    	//if button is pressed, call runIntakeMotor()
+    	//if buttonA is pressed, call shootBall
+    	//else setShootPower 0
+    	
+    	//if buttonB is pressed, call runIntakeMotor()
+    	
+    	//
+    	
+    	
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

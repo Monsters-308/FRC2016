@@ -47,32 +47,54 @@ public class Shooter extends Subsystem {
 	}
 
 	/**
+	 * keeps ball between optical sensors
+	 */
+	public void adjustBall() {
+		/*If lowOpticalSensor is false and highOpticalSensor is true
+		 *then run intakeMotor reverse intakeAdjustSpeed
+		 *
+		 *Else if lowOpticalSensor is true and highOpticalSensor is false
+		 *then run intakeMotor forward intakeAdjustSpeed
+		 *
+		 *Else set intakeMotor to 0 (stop)
+		 */
+	}
+
+	/**
 	 * sets up shooter without PID
 	 */
 	public void setupShooter() {
 		shootMotor1.changeControlMode(TalonControlMode.PercentVbus);
 		intakeMotor.changeControlMode(TalonControlMode.PercentVbus);
 	}
+
 	
-	/**
-	 * gets shooter up to speed with PID Loop
-	 */
-	public void revUPShooter(){
-		
-	}
-	
+
 	/**
 	 * runs the intake motor
 	 */
-	public void runIntakeMotor(){
-		
+	public void runIntakeMotor() {
+		// if highOpticalSensor is false
+		// set intakeMotor to constant intakeGrabSpeed
+
+		// else set intakeMotor to 0
+
 	}
-	
+
 	/**
 	 * shoots the ball
 	 */
-	public void shootBall(){
-		
+	public void shootBall() {
+		/*
+		 * if shooter not up to speed and both optical sensors are true, 
+		 * then set shootMotor to shooterSpeed 
+		 * 
+		 * else if current shooter speed is within shootingTolerance , 
+		 * then set intakeMotor to intakeShooterSpeed
+		 * 
+		 * else set shootMotor 0
+		 */
+
 	}
 
 	/**
