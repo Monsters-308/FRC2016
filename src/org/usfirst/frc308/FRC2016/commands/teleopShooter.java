@@ -47,8 +47,8 @@ public class teleopShooter extends Command {
 
 		// if buttonA is pressed, call shootBall
 		// else setShootPower 0
-		if (Robot.oi.joystick2.getRawButton(0)) {// TODO which button?
-			Robot.shooter.shootBall();
+		if (Robot.oi.joystick2.getRawButton(1)) {// TODO which button?
+			Robot.shooter.shootBallHigh();
 
 		} else {
 			Robot.shooter.setShootPower(0);
@@ -57,8 +57,11 @@ public class teleopShooter extends Command {
 		
 
 		// if buttonB is pressed, call runIntakeMotor()
-		if (Robot.oi.joystick2.getRawButton(1)){//TODO which button?
+		if (Robot.oi.joystick2.getRawButton(4)){//TODO which button?
 			Robot.shooter.runIntakeMotor();
+		}
+		if (Robot.oi.joystick2.getRawButton(3)){
+			Robot.shooter.ejectBall();
 		}
 
 		//

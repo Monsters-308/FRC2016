@@ -13,4 +13,5 @@ public class RobotConstants {
 	public static double intakeShooterSpeed = 0.0;
 	public static double shooterSpeed = 0.0;
 	public static double shooterTolerance = 0.0; //units?
+	public static double intakeEjectSpeed = 0.0;
 }

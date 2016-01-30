@@ -70,6 +70,8 @@ public class Shooter extends Subsystem {
 
 	
 
+	
+	
 	/**
 	 * runs the intake motor
 	 */
@@ -84,7 +86,7 @@ public class Shooter extends Subsystem {
 	/**
 	 * shoots the ball
 	 */
-	public void shootBall() {
+	public void shootBallHigh() {
 		/*
 		 * if shooter not up to speed and both optical sensors are true, 
 		 * then set shootMotor to shooterSpeed 
@@ -95,6 +97,14 @@ public class Shooter extends Subsystem {
 		 * else set shootMotor 0
 		 */
 
+	}
+	public void ejectBall() {
+		/*
+		 * if buttonC is pressed, set intakeMotor to negative intakeEjectSpeed 
+		 * 
+		 * else set intakeMotor 0
+		 */
+		
 	}
 
 	/**
