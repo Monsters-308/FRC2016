@@ -110,6 +110,9 @@ public class Shooter extends Subsystem {
 		 * 
 		 * else set shootMotor 0
 		 */
+		
+		/* ADD PNEUMATIC OBJECT AND CODE TO TO LOCK THE SHOOTING BAFFLE */ 
+		
 		if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) > RobotConstants.shooterTolerance
 				&& (highOpticalSensor.get() == true && lowOpticalSensor.get() == true)) {
