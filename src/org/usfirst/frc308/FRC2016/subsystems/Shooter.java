@@ -18,6 +18,7 @@ import org.usfirst.frc308.FRC2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -37,6 +38,7 @@ public class Shooter extends Subsystem {
 
 	private final DigitalInput highOpticalSensor = RobotMap.highopticalsensor;
 	private final DigitalInput lowOpticalSensor = RobotMap.lowopticalsensor;
+	private final Solenoid shooterLift = RobotMap.pneumaticsshooterLift;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -53,6 +55,16 @@ public class Shooter extends Subsystem {
 	}
 
 	/**
+	 * moves the shooter platform up if its down, or down if its up
+	 */
+	public void toggleLift() {
+		//TODO
+		//if shooterLift is up, set it to down
+		
+		//if shooterLift is down, set it to up
+	}
+
+	/**
 	 * keeps ball between optical sensors
 	 */
 	public void adjustBall() {
@@ -60,17 +72,14 @@ public class Shooter extends Subsystem {
 		if (lowOpticalSensor.get() == false && highOpticalSensor.get() == true) {
 			// then run intakeMotor reverse intakeAdjustSpeed
 			Robot.shooter.intakeMotor.set(-RobotConstants.intakeAdjustSpeed);
+		} else if (lowOpticalSensor.get() == true && highOpticalSensor.get() == false) {
+			// Else if lowOpticalSensor is true and highOpticalSensor is false
+			// then run intakeMotor forward intakeAdjustSpeed
+			Robot.shooter.intakeMotor.set(RobotConstants.intakeAdjustSpeed);
 		} else {
-			if (lowOpticalSensor.get() == true && highOpticalSensor.get() == false) {
-				Robot.shooter.intakeMotor.set(RobotConstants.intakeAdjustSpeed);
-			} else {
-				Robot.shooter.intakeMotor.set(0);
-			}
+			// Else set intakeMotor to 0 (stop)
+			Robot.shooter.intakeMotor.set(0);
 		}
-		// Else if lowOpticalSensor is true and highOpticalSensor is false
-		// then run intakeMotor forward intakeAdjustSpeed
-		//
-		// Else set intakeMotor to 0 (stop)
 
 	}
 

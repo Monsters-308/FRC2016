@@ -14,4 +14,11 @@ public class RobotConstants {
 	public static double shooterSpeed = 0.0;
 	public static double shooterTolerance = 0.0; //units?
 	public static double intakeEjectSpeed = 0.0;
+	
+	//Arm Constants
+	public static double armLowHeight = 0.0;
+	public static double armHighHeight = 0.0;
+	public static double armPIDKp = 0.0;
+	public static double armPIDKi = 0.0;
+	public static double armPIDKd = 0.0;
 }

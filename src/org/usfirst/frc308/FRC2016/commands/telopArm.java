@@ -38,10 +38,12 @@ public class telopArm extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.arm.setupArmMotor();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//read joystick arm axis and pass it to setArmPosition() function
     }
 
     // Make this return true when this Command no longer needs to run execute()

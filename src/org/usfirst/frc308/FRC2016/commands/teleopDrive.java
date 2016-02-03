@@ -43,6 +43,9 @@ public class teleopDrive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.chasis.basicDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick1.getX());
+		//TODO
+		//if buttonE is pressed, call shiftUp()
+		//if buttonF is pressed, call shiftDown()
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
