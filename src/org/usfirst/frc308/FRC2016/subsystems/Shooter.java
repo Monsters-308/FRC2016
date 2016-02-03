@@ -58,10 +58,10 @@ public class Shooter extends Subsystem {
 	 * moves the shooter platform up if its down, or down if its up
 	 */
 	public void toggleLift() {
-		//TODO
-		//if shooterLift is up, set it to down
+		//TODO Morgan
+		//if shooterLift is up (true), set it to down (false)
 		
-		//if shooterLift is down, set it to up
+		//if shooterLift is down (false), set it to up (true)
 	}
 
 	/**

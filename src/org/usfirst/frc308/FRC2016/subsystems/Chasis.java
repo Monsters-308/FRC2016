@@ -77,12 +77,12 @@ public class Chasis extends Subsystem {
 	}
 	
 	public void shiftUp(){
-		//TODO
+		//TODO Matteo
 		//set shifter to up
 	}
 	
 	public void shiftDown(){
-		//TODO
+		//TODO Mathew
 		//set shifter to down
 	}
 
