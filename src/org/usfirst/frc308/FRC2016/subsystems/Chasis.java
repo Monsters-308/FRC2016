@@ -80,7 +80,6 @@ public class Chasis extends Subsystem {
 	public void shiftUp(){
 		//TODO Matteo
 		//set shifter to up
-	}
 		Robot.chasis.shifter.set(true);
 	} 
 	
