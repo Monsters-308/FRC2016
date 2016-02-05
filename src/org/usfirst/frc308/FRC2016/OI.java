@@ -11,8 +11,6 @@
 
 package org.usfirst.frc308.FRC2016;
 
-import org.usfirst.frc308.FRC2016.commands.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import org.usfirst.frc308.FRC2016.subsystems.*;
 
@@ -21,6 +19,7 @@ import org.usfirst.frc308.FRC2016.subsystems.*;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+@SuppressWarnings("unused")
 public class OI {
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
