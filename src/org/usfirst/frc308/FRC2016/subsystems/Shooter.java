@@ -11,10 +11,15 @@
 // Matteo
 package org.usfirst.frc308.FRC2016.subsystems;
 
+import java.util.Set;
+
 import org.usfirst.frc308.FRC2016.Robot;
 import org.usfirst.frc308.FRC2016.RobotConstants;
 import org.usfirst.frc308.FRC2016.RobotMap;
 import org.usfirst.frc308.FRC2016.commands.*;
+
+import com.sun.org.apache.xpath.internal.functions.Function;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -57,8 +62,16 @@ public class Shooter extends Subsystem {
 	/**
 	 * moves the shooter platform up if its down, or down if its up
 	 */
-	public void toggleLift() {
-		//TODO Morgan
+public void toggleLift() {
+	if(shooterLift.get()==true)  //if shooter lift is up 
+	{shooterLift.set(false);//set it down
+		
+	} else if (shooterLift.get()==false ) {
+		shooterLift.set(true);
+	}
+	
+	
+		//z Morgan //hi
 		//if shooterLift is up (true), set it to down (false)
 		
 		//if shooterLift is down (false), set it to up (true)
