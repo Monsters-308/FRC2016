@@ -11,8 +11,6 @@
 
 package org.usfirst.frc308.FRC2016;
 
-import org.usfirst.frc308.FRC2016.commands.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import org.usfirst.frc308.FRC2016.subsystems.*;
 
