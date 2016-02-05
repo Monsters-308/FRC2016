@@ -10,6 +10,7 @@
 
 package org.usfirst.frc308.FRC2016.subsystems;
 
+import org.usfirst.frc308.FRC2016.Robot;
 import org.usfirst.frc308.FRC2016.RobotConstants;
 import org.usfirst.frc308.FRC2016.RobotMap;
 import org.usfirst.frc308.FRC2016.commands.*;
