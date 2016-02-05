@@ -51,10 +51,14 @@ public class teleopShooter extends Command {
 		// if buttonA is pressed, call shootBall
 		// else setShootPower 0
 		if (Robot.oi.joystick2.getRawButton(1)) {// TODO which button?
+			Robot.shooter.setBaffle(true);//lift baffle
 			Robot.shooter.shootBallHigh();
+			
 
 		} else {
 			Robot.shooter.setShootPower(0);
+			Robot.shooter.setBaffle(false);
+			
 
 		}
 

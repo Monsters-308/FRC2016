@@ -44,7 +44,7 @@ public class Shooter extends Subsystem {
 	private final DigitalInput highOpticalSensor = RobotMap.highopticalsensor;
 	private final DigitalInput lowOpticalSensor = RobotMap.lowopticalsensor;
 	private final Solenoid shooterLift = RobotMap.pneumaticsshooterLift;
-
+    private final Solenoid shooterBaffle = RobotMap.pneumaticsshooterBaffle;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -162,5 +162,13 @@ public void toggleLift() {
 	 */
 	public void setShootPower(double power) {
 		shootMotor1.set(power);
+	}
+	/**
+	 * Sets shooting baffle up or down
+	 * @param state true = up false = down
+	 */
+	public void setBaffle(boolean state){ 
+		Robot.shooter.shooterBaffle.set(state);
+		
 	}
 }
