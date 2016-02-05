@@ -21,4 +21,10 @@ public class RobotConstants {
 	public static double armPIDKp = 0.0;
 	public static double armPIDKi = 0.0;
 	public static double armPIDKd = 0.0;
+	
+	//shooter platform constants 
+	public static int platformShiftUpButton = 0; 
+	public static int platformShiftDownButton = 0; 
+	
 }
+
