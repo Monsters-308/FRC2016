@@ -55,7 +55,6 @@ public class teleopShooter extends Command {
 		if (Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
 			Robot.shooter.setBaffle(true);// lift baffle
 			Robot.shooter.shootBallHigh();
-
 		} else { // else setShootPower 0
 			Robot.shooter.setShootPower(0);
 			Robot.shooter.setBaffle(false);

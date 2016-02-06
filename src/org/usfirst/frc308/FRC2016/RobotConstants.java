@@ -26,7 +26,7 @@ public class RobotConstants {
 	public static double intakeGrabSpeed = 0.0; // range -1 to 1
 	public static double intakeAdjustSpeed = 0.2;
 	public static double intakeShooterSpeed = 0.0;
-	public static double shooterSpeed = 0.0;
+	public static double shooterSpeed = 1.0;
 	public static double shooterTolerance = 0.0; // units?
 	public static double intakeEjectSpeed = 0.0;
 

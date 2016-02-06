@@ -63,6 +63,7 @@ public class Shooter extends Subsystem {
 	public void displayOpticalSensorData() {
 		SmartDashboard.putBoolean("high sensor", highOpticalSensor.get());
 		SmartDashboard.putBoolean("low sensor", lowOpticalSensor.get());
+		SmartDashboard.putNumber("shooter speed", shootMotor1.getEncVelocity());
 	}
 
 	/**
@@ -137,7 +138,7 @@ public class Shooter extends Subsystem {
 		if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) > RobotConstants.shooterTolerance
 				&& (highOpticalSensor.get() == true && lowOpticalSensor.get() == true)) {
-			Robot.shooter.shootMotor1.set(RobotConstants.intakeShooterSpeed);
+			Robot.shooter.shootMotor1.set(RobotConstants.shooterSpeed);
 		} else if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
 			Robot.shooter.intakeMotor.set(RobotConstants.intakeShooterSpeed);
