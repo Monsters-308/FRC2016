@@ -118,8 +118,11 @@ public class Chasis extends Subsystem {
 	}
 
 	public void autonomousRotate() {
+		SmartDashboard.putNumber("angle", gyro.getAngle());
+		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		double turn = 0.0;
 		double error = gyro.getAngle() - setPoint;
+		SmartDashboard.putNumber("error", error);
 		// makes sure error is between -180 and 180
 		if (error < -180.0) {
 			while (error < -180.0) {

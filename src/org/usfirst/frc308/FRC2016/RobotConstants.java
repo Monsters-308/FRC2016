@@ -23,7 +23,7 @@ public class RobotConstants {
 	public static double gyroPIDVelocityTolerance = 0.5; //in degrees/second
 
 	// Shooter Constants
-	public static double intakeGrabSpeed = 0.0; // range -1 to 1
+	public static double intakeGrabSpeed = 0.5; // range -1 to 1
 	public static double intakeAdjustSpeed = 0.2;
 	public static double intakeShooterSpeed = 0.0;
 	public static double shooterSpeed = 1.0;
