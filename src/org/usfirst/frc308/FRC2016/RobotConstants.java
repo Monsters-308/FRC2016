@@ -10,8 +10,8 @@ public class RobotConstants {
 
 	// Joystick 2 Buttons
 	public static int shootBallHigh = 1;
-	public static int runIntakeMotor = 4;
-	public static int ejectBall = 3;
+	public static int runIntakeMotor = 2;
+	public static int ejectBall = 4;
 	
 
 	// Chassis Constants
