@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -59,9 +60,16 @@ public class Shooter extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
+	public void displayOpticalSensorData() {
+		SmartDashboard.putBoolean("high sensor", highOpticalSensor.get());
+		SmartDashboard.putBoolean("low sensor", lowOpticalSensor.get());
+	}
+
 	/**
 	 * sets the lift up or down
-	 * @param setpoint true to set it up, false to set it down
+	 * 
+	 * @param setpoint
+	 *            true to set it up, false to set it down
 	 */
 	public void setLift(boolean setpoint) {
 		shooterLift.set(setpoint);
@@ -71,11 +79,12 @@ public class Shooter extends Subsystem {
 	 * keeps ball between optical sensors
 	 */
 	public void adjustBall() {
+		SmartDashboard.putNumber("Intake Motor", Robot.shooter.intakeMotor.get());// MonstersDebug
 		// If lowOpticalSensor is false and highOpticalSensor is true
-		if (lowOpticalSensor.get() == false && highOpticalSensor.get() == true) {
+		if (lowOpticalSensor.get() == true && highOpticalSensor.get() == false) {
 			// then run intakeMotor reverse intakeAdjustSpeed
 			Robot.shooter.intakeMotor.set(-RobotConstants.intakeAdjustSpeed);
-		} else if (lowOpticalSensor.get() == true && highOpticalSensor.get() == false) {
+		} else if (lowOpticalSensor.get() == false && highOpticalSensor.get() == true) {
 			// Else if lowOpticalSensor is true and highOpticalSensor is false
 			// then run intakeMotor forward intakeAdjustSpeed
 			Robot.shooter.intakeMotor.set(RobotConstants.intakeAdjustSpeed);
