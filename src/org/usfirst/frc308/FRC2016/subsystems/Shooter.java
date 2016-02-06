@@ -44,7 +44,7 @@ public class Shooter extends Subsystem {
 	private final DigitalInput highOpticalSensor = RobotMap.highopticalsensor;
 	private final DigitalInput lowOpticalSensor = RobotMap.lowopticalsensor;
 	private final Solenoid shooterLift = RobotMap.pneumaticsshooterLift;
-    private final Solenoid shooterBaffle = RobotMap.pneumaticsshooterBaffle;
+	private final Solenoid shooterBaffle = RobotMap.pneumaticsshooterBaffle;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -60,21 +60,11 @@ public class Shooter extends Subsystem {
 	}
 
 	/**
-	 * moves the shooter platform up if its down, or down if its up
+	 * sets the lift up or down
+	 * @param setpoint true to set it up, false to set it down
 	 */
-public void toggleLift() {
-	if(shooterLift.get()==true)  //if shooter lift is up 
-	{shooterLift.set(false);//set it down
-		
-	} else if (shooterLift.get()==false ) {
-		shooterLift.set(true);
-	}
-	
-	
-		//z Morgan //hi
-		//if shooterLift is up (true), set it to down (false)
-		
-		//if shooterLift is down (false), set it to up (true)
+	public void setLift(boolean setpoint) {
+		shooterLift.set(setpoint);
 	}
 
 	/**
@@ -132,9 +122,9 @@ public void toggleLift() {
 		 * 
 		 * else set shootMotor 0
 		 */
-		
-		/* ADD PNEUMATIC OBJECT AND CODE TO TO LOCK THE SHOOTING BAFFLE */ 
-		
+
+		/* ADD PNEUMATIC OBJECT AND CODE TO TO LOCK THE SHOOTING BAFFLE */
+
 		if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) > RobotConstants.shooterTolerance
 				&& (highOpticalSensor.get() == true && lowOpticalSensor.get() == true)) {
@@ -163,12 +153,15 @@ public void toggleLift() {
 	public void setShootPower(double power) {
 		shootMotor1.set(power);
 	}
+
 	/**
 	 * Sets shooting baffle up or down
-	 * @param state true = up false = down
+	 * 
+	 * @param state
+	 *            true = up false = down
 	 */
-	public void setBaffle(boolean state){ 
+	public void setBaffle(boolean state) {
 		Robot.shooter.shooterBaffle.set(state);
-		
+
 	}
 }

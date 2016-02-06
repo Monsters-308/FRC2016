@@ -44,16 +44,14 @@ public class teleopDrive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.chasis.basicDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick1.getX());
-		if(Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftUpButton) == true ) {
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.chasisShiftUpButton) == true) {
 			Robot.chasis.shiftUp();
-			
-		} else if(Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftDownButton)== true){  
+
+		} else if (Robot.oi.joystick1.getRawButton(RobotConstants.chasisShiftDownButton) == true) {
 			Robot.chasis.shiftDown();
 		}
-	
-		//TODO Brie
-		//if buttonE is pressed, call shiftUp()
-		//if buttonF is pressed, call shiftDown()
+		// if buttonE is pressed, call shiftUp()
+		// if buttonF is pressed, call shiftDown()
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
