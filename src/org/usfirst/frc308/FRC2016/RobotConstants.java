@@ -9,6 +9,10 @@ public class RobotConstants {
 	public static int chasisShiftDownButton = 0;
 
 	// Joystick 2 Buttons
+	public static int shootBallHigh = 1;
+	public static int runIntakeMotor = 4;
+	public static int ejectBall = 3;
+	
 
 	// Chassis Constants
 	public static double Kp = 0.0;
@@ -29,5 +33,8 @@ public class RobotConstants {
 	public static double armPIDKp = 0.0;
 	public static double armPIDKi = 0.0;
 	public static double armPIDKd = 0.0;
+	
+
+	
 
 }
