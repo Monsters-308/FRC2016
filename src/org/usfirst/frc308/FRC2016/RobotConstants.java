@@ -7,6 +7,7 @@ public class RobotConstants {
 	public static int platformShiftDownButton = 1;
 	public static int chasisShiftUpButton = 1;
 	public static int chasisShiftDownButton = 1;
+	public static int chasisReverseDirectionButton = 1;
 
 	// Joystick 2 Buttons
 	public static int shootBallHigh = 1;
@@ -15,6 +16,9 @@ public class RobotConstants {
 	
 
 	// Chassis Constants
+	public static boolean direction = true;
+	public static final boolean shooterDirection = true;
+	public static final boolean intakeDirection = false;
 	public static double Kp = 0.005;
 	public static double Ki = 0.0;
 	public static double Kd = 0.0;
