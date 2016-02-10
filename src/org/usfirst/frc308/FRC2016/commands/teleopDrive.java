@@ -45,12 +45,18 @@ public class teleopDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		int directionvalue = 1;
+		if(RobotConstants.direction == RobotConstants.intakeDirection) { 
+			directionvalue = -1; 
+			
+		} 
+	
 		// TODO
 		// if direction equals shooterDirection, call basicDrive normally
 		// if direction equals intakeDirection, call basicDrive with -1 *
 		// joystick.getY()
-		Robot.chasis.basicDrive(Robot.chasis.deadZone(Robot.oi.joystick1.getY()),
-				Robot.chasis.deadZone(Robot.oi.joystick1.getX()));
+		Robot.chasis.basicDrive(Robot.chasis.deadZone(directionvalue*Robot.oi.joystick1.getY()),
+				Robot.chasis.deadZone(directionvalue*Robot.oi.joystick1.getX()));
 
 		if (Robot.oi.joystick1.getRawButton(RobotConstants.chasisShiftUpButton) == true) {
 			Robot.chasis.shiftUp();
