@@ -72,7 +72,8 @@ public class RobotMap {
 
 		chasisgyro = new AnalogGyro(0);
 		LiveWindow.addSensor("Chasis", "gyro", chasisgyro);
-		chasisgyro.setSensitivity(0.0011);
+		chasisgyro.initGyro();
+		chasisgyro.setSensitivity(0.0016);
 		shootershootMotor1 = new CANTalon(10);
 		LiveWindow.addActuator("Shooter", "shootMotor1", shootershootMotor1);
 

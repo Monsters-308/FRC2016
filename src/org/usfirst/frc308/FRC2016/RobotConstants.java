@@ -19,10 +19,10 @@ public class RobotConstants {
 	public static boolean direction = true;
 	public static final boolean shooterDirection = true;
 	public static final boolean intakeDirection = false;
-	public static double Kp = 0.005;
-	public static double Ki = 0.0;
+	public static double Kp = 0.007;
+	public static double Ki = 0.001;
 	public static double Kd = 0.0;
-	public static double iZone = 10.0;
+	public static double iZone = 15.0;
 	public static double gyroPIDErrorTolerance = 1.0; //in degrees
 	public static double gyroPIDVelocityTolerance = 0.5; //in degrees/second
 

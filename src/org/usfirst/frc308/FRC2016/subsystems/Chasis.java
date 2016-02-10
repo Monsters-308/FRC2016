@@ -66,7 +66,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public void calibrateGyro() {
-		gyro.calibrate();
+		//gyro.calibrate();
 	}
 
 	public void setupBasicDrive() {
@@ -122,7 +122,6 @@ public class Chasis extends Subsystem {
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		double turn = 0.0;
 		double error = gyro.getAngle() - setPoint;
-		SmartDashboard.putNumber("error", error);
 		// makes sure error is between -180 and 180
 		if (error < -180.0) {
 			while (error < -180.0) {
@@ -133,6 +132,7 @@ public class Chasis extends Subsystem {
 				error -= 360.0;
 			}
 		}
+		SmartDashboard.putNumber("error", error);
 		if (Math.abs(error) < RobotConstants.iZone) { // if we're in the izone
 			IAccumulator = IAccumulator + error; // sum up error
 		} else {
