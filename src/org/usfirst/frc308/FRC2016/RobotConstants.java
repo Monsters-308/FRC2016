@@ -7,7 +7,7 @@ public class RobotConstants {
 	public static int platformShiftDownButton = 1;
 	public static int chasisShiftUpButton = 1;
 	public static int chasisShiftDownButton = 1;
-	public static int chasisReverseDirectionButton = 1;
+	public static int chasisReverseDirectionButton = 5;
 
 	// Joystick 2 Buttons
 	public static int shootBallHigh = 1;
