@@ -45,6 +45,7 @@ public class RobotConstants {
 	public static double deadZone = 0.1;
 	
 
-	
+	//vision Constants
+	public static double cameraFieldOfView = 67.0; //in degrees
 
 }

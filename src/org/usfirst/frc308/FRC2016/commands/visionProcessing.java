@@ -12,8 +12,10 @@ package org.usfirst.frc308.FRC2016.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc308.FRC2016.Robot;
+import org.usfirst.frc308.FRC2016.RobotConstants;
 
 /**
  *
@@ -39,13 +41,16 @@ public class visionProcessing extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		double[] defaultValue = new double[0];
+		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerX", defaultValue);
+		new AutonomousRotate((targets[0] - 160.0) / 160.0 * RobotConstants.cameraFieldOfView);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double[] defaultValue = new double[0];
 		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerX", defaultValue);
-		//new AutonomousRotate(targets[0]-);
+		SmartDashboard.putNumber("angle to target", (targets[0] - 160.0) / 160.0 * RobotConstants.cameraFieldOfView);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -60,5 +65,6 @@ public class visionProcessing extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
 }
