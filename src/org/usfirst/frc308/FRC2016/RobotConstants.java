@@ -23,6 +23,7 @@ public class RobotConstants {
 	public static double Ki = 0.001;
 	public static double Kd = 0.0;
 	public static double iZone = 15.0;
+	public static double rotateInertiaBias = 0.15;
 	public static double gyroPIDErrorTolerance = 1.0; //in degrees
 	public static double gyroPIDVelocityTolerance = 0.5; //in degrees/second
 
@@ -32,7 +33,6 @@ public class RobotConstants {
 	public static double intakeShooterSpeed = 0.0;
 	public static double shooterSpeed = 1.0;
 	public static double shooterTolerance = 0.0; // units?
-	public static double intakeEjectSpeed = 0.0;
 
 	// Arm Constants
 	public static double armLowHeight = 0.0;

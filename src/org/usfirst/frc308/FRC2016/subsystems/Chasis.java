@@ -66,7 +66,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public void calibrateGyro() {
-		//gyro.calibrate();
+		// gyro.calibrate();
 	}
 
 	public void setupBasicDrive() {
@@ -85,16 +85,16 @@ public class Chasis extends Subsystem {
 		setPoint = gyro.getAngle(); // make setpoint current angle
 		IAccumulator = 0; // reset accumulator
 	}
-	
-	public void shiftUp(){
-		//Matteo
-		//set shifter to up
+
+	public void shiftUp() {
+		// Matteo
+		// set shifter to up
 		Robot.chasis.shifter.set(true);
-	} 
-	
-	public void shiftDown(){
-		//Matthew
-		//set shifter to down
+	}
+
+	public void shiftDown() {
+		// Matthew
+		// set shifter to down
 		Robot.chasis.shifter.set(false);
 	}
 
@@ -179,7 +179,10 @@ public class Chasis extends Subsystem {
 				}
 			}
 			if (turning == true) { // first time/initialize
-				setPoint = gyro.getAngle(); // make setpoint current angle
+				setPoint = gyro.getAngle() + RobotConstants.rotateInertiaBias * gyro.getRate(); // make
+																								// setpoint
+																								// current
+																								// angle
 				IAccumulator = 0; // reset accumulator
 				turning = false; // we are no longer turning
 			} else { // after initializing

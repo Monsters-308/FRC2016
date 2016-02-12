@@ -86,7 +86,7 @@ public class RobotMap {
 		armarmMotor = new CANTalon(15);
 		LiveWindow.addActuator("Arm", "armMotor", armarmMotor);
 
-		pneumaticsCompressor = new Compressor(0);
+		pneumaticsCompressor = new Compressor();
 
 		pneumaticsshifter = new Solenoid(0, 0);
 		LiveWindow.addActuator("Pneumatics", "shifter", pneumaticsshifter);
