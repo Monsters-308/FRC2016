@@ -140,7 +140,6 @@ public class Shooter extends Subsystem {
 		if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) >= RobotConstants.shooterTolerance
 				&& (highOpticalSensor.get() == true && lowOpticalSensor.get() == true)) {//TODO make false
-			SmartDashboard.putBoolean("ajslkdfjaklsdj", true);
 			Robot.shooter.shootMotor1.set(RobotConstants.shooterSpeed);
 		} else if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {

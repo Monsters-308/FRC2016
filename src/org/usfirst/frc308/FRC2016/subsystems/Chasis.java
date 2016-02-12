@@ -135,6 +135,9 @@ public class Chasis extends Subsystem {
 		SmartDashboard.putNumber("error", error);
 		if (Math.abs(error) < RobotConstants.iZone) { // if we're in the izone
 			IAccumulator = IAccumulator + error; // sum up error
+			if (RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator > RobotConstants.maximumIZoneSpeed) {
+				IAccumulator = (RobotConstants.maximumIZoneSpeed - RobotConstants.Kp * error) / RobotConstants.Ki;
+			}
 		} else {
 			IAccumulator = 0;
 		}
@@ -189,6 +192,11 @@ public class Chasis extends Subsystem {
 				if (Math.abs(error) < RobotConstants.iZone) { // if we're in the
 																// izone
 					IAccumulator = IAccumulator + error; // sum up error
+					if (RobotConstants.Kp * error
+							+ RobotConstants.Ki * IAccumulator > RobotConstants.maximumIZoneSpeed) {
+						IAccumulator = (RobotConstants.maximumIZoneSpeed - RobotConstants.Kp * error)
+								/ RobotConstants.Ki;
+					}
 				} else {
 					IAccumulator = 0;
 				}

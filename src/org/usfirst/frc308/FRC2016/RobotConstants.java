@@ -3,10 +3,10 @@ package org.usfirst.frc308.FRC2016;
 public class RobotConstants {
 
 	// Joystick 1 Buttons
-	public static int platformShiftUpButton = 1;
-	public static int platformShiftDownButton = 1;
-	public static int chasisShiftUpButton = 1;
-	public static int chasisShiftDownButton = 1;
+	public static int platformShiftUpButton = 11;
+	public static int platformShiftDownButton = 10;
+	public static int chasisShiftUpButton = 9;
+	public static int chasisShiftDownButton = 8;
 	public static int chasisReverseDirectionButton = 5;
 
 	// Joystick 2 Buttons
@@ -23,6 +23,7 @@ public class RobotConstants {
 	public static double Ki = 0.001;
 	public static double Kd = 0.0;
 	public static double iZone = 15.0;
+	public static double maximumIZoneSpeed = 0.3;
 	public static double rotateInertiaBias = 0.15;
 	public static double gyroPIDErrorTolerance = 1.0; //in degrees
 	public static double gyroPIDVelocityTolerance = 0.5; //in degrees/second
@@ -46,6 +47,6 @@ public class RobotConstants {
 	
 
 	//vision Constants
-	public static double cameraFieldOfView = 67.0; //in degrees
+	public static double cameraFieldOfView = 49.0; //in degrees
 
 }

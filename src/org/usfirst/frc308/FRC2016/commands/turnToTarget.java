@@ -42,14 +42,19 @@ public class turnToTarget extends Command {
 	protected void initialize() {
 		double[] defaultValue = new double[0];
 		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerX", defaultValue);
-		new AutonomousRotate((targets[0] - 160.0) / 160.0 * RobotConstants.cameraFieldOfView);
+		if (targets.length > 0) {
+			new AutonomousRotate((160.0 - targets[0]) / 160.0 * RobotConstants.cameraFieldOfView).start();
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double[] defaultValue = new double[0];
 		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerX", defaultValue);
-		SmartDashboard.putNumber("angle to target", (targets[0] - 160.0) / 160.0 * RobotConstants.cameraFieldOfView);
+		if (targets.length > 0) {
+			SmartDashboard.putNumber("angle to target",
+					(160.0 - targets[0]) / 160.0 * RobotConstants.cameraFieldOfView);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
