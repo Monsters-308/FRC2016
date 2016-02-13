@@ -102,6 +102,7 @@ public class Shooter extends Subsystem {
 	 * sets up shooter without PID
 	 */
 	public void setupShooter() {
+		
 		shootMotor1.changeControlMode(TalonControlMode.PercentVbus);
 		intakeMotor.changeControlMode(TalonControlMode.PercentVbus);
 	}
@@ -139,7 +140,9 @@ public class Shooter extends Subsystem {
 
 		if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) >= RobotConstants.shooterTolerance
-				&& (highOpticalSensor.get() == true && lowOpticalSensor.get() == true)) {//TODO make false
+				&& (highOpticalSensor.get() == true && lowOpticalSensor.get() == true)) {// TODO
+																							// make
+																							// false
 			Robot.shooter.shootMotor1.set(RobotConstants.shooterSpeed);
 		} else if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
