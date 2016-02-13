@@ -45,7 +45,6 @@ public class Shooter extends Subsystem {
 	private final DigitalInput highOpticalSensor = RobotMap.highopticalsensor;
 	private final DigitalInput lowOpticalSensor = RobotMap.lowopticalsensor;
 	private final Solenoid shooterLift = RobotMap.pneumaticsshooterLift;
-	private final Solenoid shooterBaffle = RobotMap.pneumaticsshooterBaffle;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
