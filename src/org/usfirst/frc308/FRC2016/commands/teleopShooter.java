@@ -46,10 +46,7 @@ public class teleopShooter extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.displayOpticalSensorData();
-		// call adjustBall()
-		Robot.shooter.adjustBall();
-
+		
 		// if buttonA is pressed, call shootBall
 
 		if (Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
@@ -61,18 +58,7 @@ public class teleopShooter extends Command {
 
 		}
 
-		// if buttonB is pressed, call runIntakeMotor()
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.runIntakeMotor)) {
-			Robot.shooter.runIntakeMotor();
-		}
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.ejectBall)) {
-			Robot.shooter.ejectBall();
-		}
-		if (Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftUpButton)) {
-			Robot.shooter.setLift(true);
-		} else if (Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftDownButton)) {
-			Robot.shooter.setLift(false);
-		}
+		
 
 	}
 

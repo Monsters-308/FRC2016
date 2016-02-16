@@ -36,7 +36,7 @@ public class RobotMap {
 	public static AnalogGyro chasisgyro;
 	public static CANTalon shootershootMotor1;
 	public static CANTalon shootershootMotor2;
-	public static CANTalon intakeMotor;
+	public static CANTalon intakeintakeMotor;
 	public static CANTalon armarmMotor;
 	public static Compressor pneumaticsCompressor;
 	public static Solenoid pneumaticsshifter;
