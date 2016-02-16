@@ -38,7 +38,7 @@ public class RobotConstants {
 	public static double intakePIDKf = 1023.0/12300.0; //1023/maximumspeed
 	public static int intakePIDIZone = 0;
 	public static double intakePIDRampRate = 0.0;
-	public static double shooterSpeed = 10000.0;
+	public static double shooterSpeed = 100000.0;
 	public static double shooterTolerance = 0.0; // units?
 	public static double shooterPIDKp = 0.2;
 	public static double shooterPIDKi = 0.0;
@@ -53,12 +53,15 @@ public class RobotConstants {
 	public static double armPIDKp = 0.0;
 	public static double armPIDKi = 0.0;
 	public static double armPIDKd = 0.0;
+	public static double armPIDKf = 1023.0/12300.0; //1023/maximumspeed
+	public static int armPIDIZone = 0;
+	public static double armPIDRampRate = 0.0;
 	
 	//Joysick Constants
 	public static double deadZone = 0.1;
 	
 
 	//vision Constants
-	public static double cameraFieldOfView = 49.0; //in degrees
+	public static double cameraFieldOfView = 64.0; //in degrees
 
 }

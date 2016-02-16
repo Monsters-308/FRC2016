@@ -97,6 +97,8 @@ public class RobotMap {
 
 		lowopticalsensor = new DigitalInput(0); 
 		highopticalsensor = new DigitalInput(1); 
+		shootershootMotor1.reverseOutput(true);
+		shootershootMotor2.reverseOutput(true);
 		chasisleft1.reverseOutput(true);
 		chasisleft2.reverseOutput(true);
 		chasisleft3.reverseOutput(true);

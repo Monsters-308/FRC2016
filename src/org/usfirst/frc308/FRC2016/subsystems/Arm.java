@@ -47,6 +47,10 @@ public class Arm extends Subsystem {
 
 	public void setupArmMotor() {
 		armMotor.changeControlMode(TalonControlMode.Position);
+		armMotor.setProfile(0);
+		armMotor.setPID(RobotConstants.armPIDKp, RobotConstants.armPIDKi, RobotConstants.armPIDKd,
+				RobotConstants.armPIDKf, RobotConstants.armPIDIZone, RobotConstants.armPIDRampRate, 0);
+		
 	}
 
 	/**
