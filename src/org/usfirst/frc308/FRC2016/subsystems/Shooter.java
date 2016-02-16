@@ -94,6 +94,17 @@ public class Shooter extends Subsystem {
 		}
 
 	}
+	
+	/**
+	 * sets up intake for AutonomousAdjustBall
+	 */
+	public void setupAutonomousIntake(){
+		intakeMotor.changeControlMode(TalonControlMode.Speed);
+		intakeMotor.setProfile(0);
+		intakeMotor.setPID(RobotConstants.intakePIDKp, RobotConstants.intakePIDKi, RobotConstants.intakePIDKd,
+				RobotConstants.intakePIDKf, RobotConstants.intakePIDIZone, RobotConstants.intakePIDRampRate, 0);
+	
+	}
 
 	/**
 	 * sets up shooter without PID

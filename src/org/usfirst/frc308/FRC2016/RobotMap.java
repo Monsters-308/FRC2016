@@ -36,7 +36,7 @@ public class RobotMap {
 	public static AnalogGyro chasisgyro;
 	public static CANTalon shootershootMotor1;
 	public static CANTalon shootershootMotor2;
-	public static CANTalon shooterintakeMotor;
+	public static CANTalon intakeMotor;
 	public static CANTalon armarmMotor;
 	public static Compressor pneumaticsCompressor;
 	public static Solenoid pneumaticsshifter;
@@ -77,8 +77,8 @@ public class RobotMap {
 		shootershootMotor2 = new CANTalon(11);
 		LiveWindow.addActuator("Shooter2", "shootMotor2", shootershootMotor2);
 		
-		shooterintakeMotor = new CANTalon(12);
-		LiveWindow.addActuator("intake", "intakeMotor", shooterintakeMotor);
+		intakeMotor = new CANTalon(12);
+		LiveWindow.addActuator("Intake", "intakeMotor", intakeMotor);
 
 		armarmMotor = new CANTalon(15);
 		LiveWindow.addActuator("Arm", "armMotor", armarmMotor);
