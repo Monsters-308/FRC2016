@@ -80,6 +80,14 @@ public class Chasis extends Subsystem {
 		right2.set(1);
 		right3.changeControlMode(TalonControlMode.Follower);
 		right3.set(1);
+		
+		right1.reverseOutput(false);
+		SmartDashboard.putBoolean("rightreversed", true);
+		right2.reverseOutput(false);
+		right3.reverseOutput(false);
+		left1.reverseOutput(false);
+		left2.reverseOutput(false);
+		left3.reverseOutput(false);
 
 		gyro.reset();
 		setPoint = gyro.getAngle(); // make setpoint current angle
@@ -217,8 +225,8 @@ public class Chasis extends Subsystem {
 		} else if (turn != 0.0) { // a turn is being commanded
 			turning = true;
 		}
-		left1.set((power - turn) / 2.0);
-		right1.set((power + turn) / 2.0);
+		left1.set((power + turn) / 2.0);
+		right1.set(-(power - turn) / 2.0);
 	}
 
 }

@@ -5,6 +5,12 @@ import org.usfirst.frc308.FRC2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousAdjustBall extends Command{
+	
+	
+	public AutonomousAdjustBall() {
+		requires(Robot.intake);
+		
+	}
 
 	@Override
 	protected void initialize() {

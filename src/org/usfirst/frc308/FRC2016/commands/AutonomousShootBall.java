@@ -6,8 +6,13 @@ public class AutonomousShootBall extends CommandGroup {
 
 	public AutonomousShootBall() {
 		//set baffle - parallel
-		//adjust ball - parallel
+		addSequential(new AutonomousSetBaffle(true));
+		
+		//adjust ball - parallel 
+		addParallel(new AutonomousAdjustBall());
+		
 		//rev up motor - sequential
+		
 		//run intake
 		//stop
 	}

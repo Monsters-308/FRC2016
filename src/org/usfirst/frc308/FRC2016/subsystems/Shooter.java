@@ -83,6 +83,14 @@ public class Shooter extends Subsystem {
 
 	}
 
+	public boolean isOnTarget(double targetSpeed) {
+		if(Math.abs(RobotConstants.shooterSpeed
+				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	/**
 	 * shoots the ball
 	 */
@@ -111,7 +119,9 @@ public class Shooter extends Subsystem {
 			Robot.shooter.shootMotor1.set(0);
 		}
 	}
-
+	public void setMotorSpeed(double revUpMotor) {
+		Robot.shooter.shootMotor1.set(revUpMotor);
+	}
 	/**
 	 * sets the shooter power
 	 * 
