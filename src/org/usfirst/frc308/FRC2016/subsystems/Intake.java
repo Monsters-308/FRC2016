@@ -12,11 +12,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake extends Subsystem {
-	private final CANTalon intakeMotor = RobotMap.intakeintakeMotor;
+	private final CANTalon intakeMotor = RobotMap.intakeMotor;
 	private final DigitalInput highOpticalSensor = RobotMap.highopticalsensor;
 	private final DigitalInput lowOpticalSensor = RobotMap.lowopticalsensor;
 	
 	public void setupIntake() {
+		intakeMotor.changeControlMode(TalonControlMode.Speed);
+		intakeMotor.setProfile(0);
+		intakeMotor.setPID(RobotConstants.intakePIDKp, RobotConstants.intakePIDKi, RobotConstants.intakePIDKd,
+				RobotConstants.intakePIDKf, RobotConstants.intakePIDIZone, RobotConstants.intakePIDRampRate, 0);
+	}
+	
+	public void displayOpticalSensorData() {
+		SmartDashboard.putBoolean("high sensor", highOpticalSensor.get());
+		SmartDashboard.putBoolean("low sensor", lowOpticalSensor.get());
+	}
+	
+	/**
+	 * sets up intake for AutonomousAdjustBall
+	 */
+	public void setupAutonomousIntake() {
 		intakeMotor.changeControlMode(TalonControlMode.Speed);
 		intakeMotor.setProfile(0);
 		intakeMotor.setPID(RobotConstants.intakePIDKp, RobotConstants.intakePIDKi, RobotConstants.intakePIDKd,

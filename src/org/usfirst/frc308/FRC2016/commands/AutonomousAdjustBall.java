@@ -8,13 +8,13 @@ public class AutonomousAdjustBall extends Command{
 
 	@Override
 	protected void initialize() {
-		Robot.shooter.setupAutonomousIntake();
+		Robot.intake.setupAutonomousIntake();
 	}
 
 	@Override
 	protected void execute() {
-		Robot.shooter.displayOpticalSensorData();
-		Robot.shooter.adjustBall();
+		Robot.intake.displayOpticalSensorData();
+		Robot.intake.adjustBall();
 	}
 
 	@Override
