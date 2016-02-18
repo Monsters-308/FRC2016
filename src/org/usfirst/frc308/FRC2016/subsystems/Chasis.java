@@ -80,7 +80,7 @@ public class Chasis extends Subsystem {
 		right2.set(1);
 		right3.changeControlMode(TalonControlMode.Follower);
 		right3.set(1);
-		
+
 		right1.reverseOutput(false);
 		SmartDashboard.putBoolean("rightreversed", true);
 		right2.reverseOutput(false);
@@ -125,6 +125,64 @@ public class Chasis extends Subsystem {
 		return false;
 	}
 
+	public void autonomousAdvancedRotate(double time, double p, double t, double ct, double v) {
+		if (time < 0.5 * t) {
+			double psetpoint = (6.0 * time * time / t / t - 15.0 * time / t + 10.0) * p * time * time * time / t / t
+					/ t;
+			double vsetpoint = (30.0 * time * time / t / t - 60.0 * time / t + 30.0) * p * time * time / t / t / t;
+			double asetpoint = (120.0 * time * time / t / t - 180.0 * time / t + 60.0) * p * time / t / t / t;
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + runRotatePID(psetpoint);
+			left1.set(-output);
+			right1.set(-output);
+		} else if (time < 0.5 * t + ct) {
+			double psetpoint = 0.5 * p + (time - 0.5 * t) * v;
+			double vsetpoint = v;
+			double asetpoint = 0;
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + runRotatePID(psetpoint);
+			left1.set(-output);
+			right1.set(-output);
+		} else if (time < t + ct) {
+			time -= ct;
+			double psetpoint = ct * v
+					+ (6.0 * time * time / t / t - 15.0 * time / t + 10.0) * p * time * time * time / t / t / t;
+			double vsetpoint = (30.0 * time * time / t / t - 60.0 * time / t + 30.0) * p * time * time / t / t / t;
+			double asetpoint = (120.0 * time * time / t / t - 180.0 * time / t + 60.0) * p * time / t / t / t;
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + runRotatePID(psetpoint);
+			left1.set(-output);
+			right1.set(-output);
+		} else {
+			left1.set(0);
+			right1.set(0);
+		}
+	}
+
+	public double runRotatePID(double setpoint) {
+		SmartDashboard.putNumber("angle", gyro.getAngle());
+		SmartDashboard.putNumber("rotation speed", gyro.getRate());
+		double turn = 0.0;
+		double error = gyro.getAngle() - setpoint;
+		// makes sure error is between -180 and 180
+		if (error < -180.0) {
+			while (error < -180.0) {
+				error += 360.0;
+			}
+		} else if (error > 180.0) {
+			while (error > 180.0) {
+				error -= 360.0;
+			}
+		}
+		SmartDashboard.putNumber("error", error);
+		IAccumulator = IAccumulator + error; // sum up error
+		if (error * lastError <= 0) { // if error changes signs (we crossed 0)
+			IAccumulator = 0;
+		}
+		double derivative = (error - lastError) / ((System.currentTimeMillis() - lastTime) / 1000.0);
+		turn = RobotConstants.Kp2 * error + RobotConstants.Ki2 * IAccumulator + RobotConstants.Kd2 * derivative;
+		lastError = error;
+		lastTime = System.currentTimeMillis();
+		return turn;
+	}
+
 	public void autonomousRotate() {
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
@@ -162,7 +220,7 @@ public class Chasis extends Subsystem {
 			turn = -1.0;
 		}
 		left1.set(-turn);
-		right1.set(turn);
+		right1.set(-turn);
 	}
 
 	public double deadZone(double input) {
