@@ -17,7 +17,7 @@ public class AutonomousRevUpMotor extends Command {
 	protected void initialize() {
 		// TODO Auto-generated method stub
 		Robot.shooter.setupShooter();
-		Robot.shooter.setMotorSpeed(speedOfRev);
+		Robot.shooter.setShootPower(speedOfRev);
 	}
 
 	@Override
@@ -28,8 +28,7 @@ public class AutonomousRevUpMotor extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return Robot.shooter.isOnTarget(speedOfRev);
 	}
 
 	@Override

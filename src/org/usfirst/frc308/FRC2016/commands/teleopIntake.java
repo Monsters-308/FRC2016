@@ -23,8 +23,6 @@ public class teleopIntake extends Command {
 		// TODO Auto-generated method stub
 		// if buttonB is pressed, call runIntakeMotor()
 		Robot.shooter.displayOpticalSensorData();
-		// call adjustBall()
-		Robot.intake.adjustBall();
 
 		if (Robot.oi.joystick2.getRawButton(RobotConstants.runIntakeMotor)) {
 			Robot.intake.runIntakeMotor();
