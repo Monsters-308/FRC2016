@@ -39,6 +39,7 @@ public class AutonomousAdvancedRotate extends Command {
 			// calculate additional time cruising at top speed
 			ct = (p - 128.0 * v * v / (45.0 * Math.sqrt(3.0) * a)) / v;
 		}
+		timer = new Timer();
 		timer.start();
 	}
 
