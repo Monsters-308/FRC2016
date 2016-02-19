@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake extends Subsystem {
 	private final CANTalon intakeMotor = RobotMap.intakeMotor;
-	private final DigitalInput lowOpticalSensor = RobotMap.intakeopticalsensor;
+	private final DigitalInput intakeOpticalSensor = RobotMap.intakeopticalsensor;
 
 	public void setupIntake() {
 		intakeMotor.changeControlMode(TalonControlMode.Speed);
@@ -23,7 +23,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void displayOpticalSensorData() {
-		SmartDashboard.putBoolean("low sensor", lowOpticalSensor.get());
+		SmartDashboard.putBoolean("low sensor", intakeOpticalSensor.get());
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class Intake extends Subsystem {
 	public void runIntakeMotor() {
 		// if highOpticalSensor is false
 		// set intakeMotor to constant intakeGrabSpeed
-		if (lowOpticalSensor.get() == true) {
+		if (intakeOpticalSensor.get() == true) {
 			Robot.intake.intakeMotor.set(RobotConstants.intakeGrabSpeed);
 		} else {
 			Robot.intake.intakeMotor.set(0);
@@ -55,6 +55,15 @@ public class Intake extends Subsystem {
 		Robot.intake.intakeMotor.set(-RobotConstants.intakeGrabSpeed);
 
 	}
+	
+	public void setIntake(double intakePower) {
+		intakeMotor.set(intakePower);
+	}
+	
+	public boolean getOpticalSensor(){
+		return intakeOpticalSensor.get();
+	}
+	
 	// else set intakeMotor to 0
 
 	@Override
