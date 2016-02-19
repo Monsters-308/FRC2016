@@ -66,7 +66,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public void calibrateGyro() {
-		// gyro.calibrate();
+		gyro.calibrate();
 	}
 
 	public void setupBasicDrive() {
@@ -157,6 +157,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public double runRotatePID(double setpoint) {
+		SmartDashboard.putNumber("gyro setpoint", setpoint);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		double turn = 0.0;
@@ -184,6 +185,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public void autonomousRotate() {
+		SmartDashboard.putNumber("gyro setpoint", setPoint);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		double turn = 0.0;
@@ -231,6 +233,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public void basicDrive(double power, double turn) {
+		SmartDashboard.putNumber("gyro setpoint", setPoint);
 		SmartDashboard.putNumber("turn commanded", turn);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());

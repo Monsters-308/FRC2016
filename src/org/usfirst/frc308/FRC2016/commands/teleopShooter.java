@@ -49,7 +49,7 @@ public class teleopShooter extends Command {
 		if (Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftUpButton)) {
 			Robot.shooter.setLift(true);
 		}
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.platformShiftDownButton)) {
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftDownButton)) {
 			Robot.shooter.setLift(false);
 		}
 		// if buttonA is pressed, call shootBall]

@@ -43,7 +43,9 @@ public class telopArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.arm.displayArmData();
     	//read joystick arm axis and pass it to setArmPosition() function
+    	Robot.arm.setArmPosition(Robot.oi.joystick2.getZ());
     }
 
     // Make this return true when this Command no longer needs to run execute()

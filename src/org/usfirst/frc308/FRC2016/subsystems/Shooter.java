@@ -56,6 +56,7 @@ public class Shooter extends Subsystem {
 		SmartDashboard.putBoolean("low sensor", intakeOpticalSensor.get());
 		SmartDashboard.putNumber("shooter speed", shootMotor1.getEncVelocity());
 		SmartDashboard.putNumber("shooter error", shootMotor1.getError());
+		SmartDashboard.putNumber("shooter setpoint", shootMotor1.getSetpoint());
 	}
 
 	/**

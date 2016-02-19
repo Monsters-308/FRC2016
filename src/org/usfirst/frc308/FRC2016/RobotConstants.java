@@ -43,22 +43,22 @@ public class RobotConstants {
 	public static double intakePIDKf = 1023.0/12300.0; //1023/maximumspeed
 	public static int intakePIDIZone = 0;
 	public static double intakePIDRampRate = 0.0;
-	public static double shooterSpeed = 100000.0;
+	public static double shooterSpeed = 8000.0;
 	public static double shooterTolerance = 0.0; // units?
 	public static double shooterPIDKp = 0.2;
-	public static double shooterPIDKi = 0.0;
+	public static double shooterPIDKi = 0.0002;
 	public static double shooterPIDKd = 0.0;
-	public static double shooterPIDKf = 1023.0/12300.0; //1023/maximumspeed
-	public static int shooterPIDIZone = 0;
+	public static double shooterPIDKf = 1023.0/9000.0; //1023/maximumspeed
+	public static int shooterPIDIZone = 1000;
 	public static double shooterPIDRampRate = 0.0;
 
 	// Arm Constants
 	public static double armLowHeight = 0.0;
-	public static double armHighHeight = 0.0;
-	public static double armPIDKp = 0.0;
-	public static double armPIDKi = 0.0;
+	public static double armHighHeight = -3600.0;
+	public static double armPIDKp = 1.0;
+	public static double armPIDKi = 0.001;
 	public static double armPIDKd = 0.0;
-	public static double armPIDKf = 1023.0/12300.0; //1023/maximumspeed
+	public static double armPIDKf = 0; //1023/maximumspeed
 	public static int armPIDIZone = 0;
 	public static double armPIDRampRate = 0.0;
 	
