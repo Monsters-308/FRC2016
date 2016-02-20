@@ -2,6 +2,7 @@ package org.usfirst.frc308.FRC2016.commands;
 
 import org.usfirst.frc308.FRC2016.Robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class teleopLights extends Command {
@@ -12,7 +13,11 @@ public class teleopLights extends Command {
 
 	@Override
 	protected void initialize() {
-
+		if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Blue) {
+			Robot.lights.setBottom(false, true);
+		} else if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Red) {
+			Robot.lights.setBottom(true, false);
+		}
 	}
 
 	@Override
