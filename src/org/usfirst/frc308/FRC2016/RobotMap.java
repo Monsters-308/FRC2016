@@ -100,7 +100,7 @@ public class RobotMap {
 		pneumaticsshooterBaffle = new Solenoid(0, 1);
 		LiveWindow.addActuator("Pneumatics", "shooterBaffle", pneumaticsshooterBaffle);
 
-		intakeopticalsensor = new DigitalInput(0); 
+		intakeopticalsensor = new DigitalInput(0);
 		shootershootMotor1.reverseOutput(true);
 		shootershootMotor2.reverseOutput(true);
 		toplights = new DigitalOutput(2);

@@ -24,6 +24,8 @@ public class Intake extends Subsystem {
 
 	public void displayOpticalSensorData() {
 		SmartDashboard.putBoolean("low sensor", intakeOpticalSensor.get());
+		SmartDashboard.putNumber("intake power", intakeMotor.getOutputVoltage());
+		SmartDashboard.putNumber("intake speed", intakeMotor.getEncVelocity());
 	}
 
 	/**
