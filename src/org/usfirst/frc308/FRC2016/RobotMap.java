@@ -103,9 +103,9 @@ public class RobotMap {
 		intakeopticalsensor = new DigitalInput(0);
 		shootershootMotor1.reverseOutput(true);
 		shootershootMotor2.reverseOutput(true);
-		toplights = new DigitalOutput(2);
-		toplights2 = new DigitalOutput(3);
-		bottomlights = new DigitalOutput(4);
-		bottomlights2 = new DigitalOutput(5);
+		toplights = new DigitalOutput(4);
+		toplights2 = new DigitalOutput(5);
+		bottomlights = new DigitalOutput(3);
+		bottomlights2 = new DigitalOutput(2);
 	}
 }

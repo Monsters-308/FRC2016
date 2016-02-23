@@ -18,6 +18,7 @@ public class teleopLights extends Command {
 		} else if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Red) {
 			Robot.lights.setBottom(true, false);
 		}
+		Robot.lights.setTop(false, true);
 	}
 
 	@Override
