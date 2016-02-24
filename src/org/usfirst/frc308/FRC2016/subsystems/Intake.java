@@ -44,7 +44,7 @@ public class Intake extends Subsystem {
 	public void runIntakeMotor() {
 		// if highOpticalSensor is false
 		// set intakeMotor to constant intakeGrabSpeed
-		if (intakeOpticalSensor.get() == false) {
+		if (intakeOpticalSensor.get() == true) {
 			Robot.intake.intakeMotor.set(RobotConstants.intakeGrabSpeed);
 		} else {
 			Robot.intake.intakeMotor.set(0);
