@@ -203,7 +203,9 @@ public class Chasis extends Subsystem {
 		SmartDashboard.putNumber("error", error);
 		if (Math.abs(error) < RobotConstants.iZone) { // if we're in the izone
 			IAccumulator = IAccumulator + error; // sum up error
-			if (RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator > RobotConstants.maximumIZoneSpeed) {
+			if (Math.abs(
+					RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator) > RobotConstants.maximumIZoneSpeed
+					&& RobotConstants.Ki != 0) {
 				IAccumulator = (RobotConstants.maximumIZoneSpeed - RobotConstants.Kp * error) / RobotConstants.Ki;
 			}
 		} else {
@@ -214,6 +216,7 @@ public class Chasis extends Subsystem {
 		}
 		double derivative = (error - lastError) / ((System.currentTimeMillis() - lastTime) / 1000.0);
 		turn = RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator + RobotConstants.Kd * derivative;
+		SmartDashboard.putNumber("commanded rotate", turn);
 		lastError = error;
 		lastTime = System.currentTimeMillis();
 		if (turn > 1.0) { // make sure turn isn't too high
@@ -237,6 +240,7 @@ public class Chasis extends Subsystem {
 		SmartDashboard.putNumber("turn commanded", turn);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
+		SmartDashboard.putNumber("chassis integral", IAccumulator);
 		if (turn == 0.0) { // driver isn't turning, keep the last angle
 			double error = gyro.getAngle() - setPoint;
 			SmartDashboard.putNumber("error", error);
@@ -261,8 +265,8 @@ public class Chasis extends Subsystem {
 				if (Math.abs(error) < RobotConstants.iZone) { // if we're in the
 																// izone
 					IAccumulator = IAccumulator + error; // sum up error
-					if (RobotConstants.Kp * error
-							+ RobotConstants.Ki * IAccumulator > RobotConstants.maximumIZoneSpeed) {
+					if (Math.abs(RobotConstants.Kp * error
+							+ RobotConstants.Ki * IAccumulator) > RobotConstants.maximumIZoneSpeed) {
 						IAccumulator = (RobotConstants.maximumIZoneSpeed - RobotConstants.Kp * error)
 								/ RobotConstants.Ki;
 					}
