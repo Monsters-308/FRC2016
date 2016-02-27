@@ -74,7 +74,6 @@ public class RobotMap {
 
 		chasisgyro = new AnalogGyro(0);
 		LiveWindow.addSensor("Chasis", "gyro", chasisgyro);
-		chasisgyro.initGyro();
 		chasisgyro.setSensitivity(0.0016);
 		shootershootMotor1 = new CANTalon(10);
 		LiveWindow.addActuator("Shooter", "shootMotor1", shootershootMotor1);
@@ -100,12 +99,12 @@ public class RobotMap {
 		pneumaticsshooterBaffle = new Solenoid(0, 1);
 		LiveWindow.addActuator("Pneumatics", "shooterBaffle", pneumaticsshooterBaffle);
 
-		intakeopticalsensor = new DigitalInput(0); 
+		intakeopticalsensor = new DigitalInput(0);
 		shootershootMotor1.reverseOutput(true);
 		shootershootMotor2.reverseOutput(true);
-		toplights = new DigitalOutput(2);
-		toplights2 = new DigitalOutput(3);
-		bottomlights = new DigitalOutput(4);
-		bottomlights2 = new DigitalOutput(5);
+		toplights = new DigitalOutput(4);
+		toplights2 = new DigitalOutput(5);
+		bottomlights = new DigitalOutput(3);
+		bottomlights2 = new DigitalOutput(2);
 	}
 }

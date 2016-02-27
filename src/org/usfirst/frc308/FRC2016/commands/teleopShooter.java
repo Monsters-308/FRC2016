@@ -46,6 +46,7 @@ public class teleopShooter extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.shooter.displayOpticalSensorData();
 		if (Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftUpButton)) {
 			Robot.shooter.setLift(true);
 		}
@@ -57,9 +58,9 @@ public class teleopShooter extends Command {
 			Robot.shooter.setBaffle(true);// lift baffle
 			Robot.shooter.shootBallHigh();
 		} else { // else setShootPower 0
+			RobotConstants.introduceBall = false;
 			Robot.shooter.setShootPower(0);
 			Robot.shooter.setBaffle(false);
-
 		}
 
 	}

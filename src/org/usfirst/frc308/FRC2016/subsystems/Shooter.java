@@ -107,15 +107,15 @@ public class Shooter extends Subsystem {
 		/* ADD PNEUMATIC OBJECT AND CODE TO TO LOCK THE SHOOTING BAFFLE */
 
 		if (Math.abs(RobotConstants.shooterSpeed
-				- Robot.shooter.shootMotor1.getEncVelocity()) >= RobotConstants.shooterTolerance
-				&& (intakeOpticalSensor.get() == true)) {// TODO
+				- Robot.shooter.shootMotor1.getEncVelocity()) >= RobotConstants.shooterTolerance) {// TODO
 																							// make
 																							// false
 			Robot.shooter.shootMotor1.set(RobotConstants.shooterSpeed);
 		} else if (Math.abs(RobotConstants.shooterSpeed
 				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
-			
+			RobotConstants.introduceBall = true;
 		} else {
+			RobotConstants.introduceBall = false;
 			Robot.shooter.shootMotor1.set(0);
 		}
 	}

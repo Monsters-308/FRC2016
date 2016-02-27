@@ -13,10 +13,12 @@ public class calibrateGyro extends Command {
 
 	@Override
 	protected void initialize() {
+		Robot.chasis.basicDrive(0, 0);
 	}
 
 	@Override
 	protected void execute() {
+		Robot.chasis.basicDrive(0, 0);
 	}
 
 	@Override
