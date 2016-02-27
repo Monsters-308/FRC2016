@@ -16,6 +16,7 @@ public class RobotConstants {
 	
 
 	// Chassis Constants
+	public static double gyroPIDOutput = 0;
 	public static boolean direction = true;
 	public static final boolean shooterDirection = true;
 	public static final boolean intakeDirection = false;
@@ -43,7 +44,7 @@ public class RobotConstants {
 	public static double intakePIDKf = 1023.0/6300.0; //1023/maximumspeed
 	public static int intakePIDIZone = 1000;
 	public static double intakePIDRampRate = 0.0;
-	public static double shooterSpeed = 9500.0;
+	public static double shooterSpeed = 9200.0;
 	public static double shooterTolerance = 50.0; // units?
 	public static double shooterPIDKp = 0.2;
 	public static double shooterPIDKi = 0.0004;

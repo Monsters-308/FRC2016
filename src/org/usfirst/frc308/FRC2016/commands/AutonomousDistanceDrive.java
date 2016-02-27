@@ -34,7 +34,7 @@ public class AutonomousDistanceDrive extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if (Robot.chasis.getPosition() >= distancetorun) {
+		if (Robot.chasis.getEncoderPosition() >= distancetorun) {
 			return true;
 		} else {
 			return false;
