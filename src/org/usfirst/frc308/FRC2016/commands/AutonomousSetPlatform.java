@@ -1,11 +1,21 @@
 package org.usfirst.frc308.FRC2016.commands;
 
+import org.usfirst.frc308.FRC2016.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousSetPlatform extends Command{
+	
+	boolean State;
+
+	public AutonomousSetPlatform(boolean state) {
+		requires(Robot.shooter);
+		State = state;
+	}
 
 	@Override
 	protected void initialize() {
+		Robot.shooter.setLift(State);
 	}
 
 	@Override
@@ -14,7 +24,7 @@ public class AutonomousSetPlatform extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
