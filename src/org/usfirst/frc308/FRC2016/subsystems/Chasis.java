@@ -65,6 +65,14 @@ public class Chasis extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
+	public void resetEncoders(){
+		left1.setEncPosition(0);
+	}
+	
+	public double getPosition(){
+		return left1.getEncPosition();
+	}
+	
 	public void calibrateGyro() {
 		gyro.calibrate();
 	}
@@ -243,7 +251,6 @@ public class Chasis extends Subsystem {
 		SmartDashboard.putNumber("chassis integral", IAccumulator);
 		if (turn == 0.0) { // driver isn't turning, keep the last angle
 			double error = gyro.getAngle() - setPoint;
-			SmartDashboard.putNumber("error", error);
 			// make sure error is between -180.0 and 180.0
 			if (error < -180.0) {
 				while (error < -180.0) {
@@ -254,16 +261,18 @@ public class Chasis extends Subsystem {
 					error -= 360.0;
 				}
 			}
+			SmartDashboard.putNumber("error", error);
 			if (turning == true) { // first time/initialize
-				setPoint = gyro.getAngle() + RobotConstants.rotateInertiaBias * gyro.getRate(); // make
-																								// setpoint
-																								// current
-																								// angle
+				setPoint = gyro.getAngle() + RobotConstants.rotateInertiaBias * gyro.getRate(); // TODO
+																								// update
 				IAccumulator = 0; // reset accumulator
 				turning = false; // we are no longer turning
 			} else { // after initializing
-				if (Math.abs(error) < RobotConstants.iZone) { // if we're in the
-																// izone
+				if (Math.abs(error) < RobotConstants.iZone && RobotConstants.Ki != 0) { // if
+																						// we're
+																						// in
+																						// the
+					// izone
 					IAccumulator = IAccumulator + error; // sum up error
 					if (Math.abs(RobotConstants.Kp * error
 							+ RobotConstants.Ki * IAccumulator) > RobotConstants.maximumIZoneSpeed) {
