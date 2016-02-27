@@ -32,6 +32,7 @@ public class RobotConstants {
 	public static double Kp2 = 0.0;
 	public static double Ki2 = 0.0;
 	public static double Kd2 = 0.0;
+	public static double gyroPIDOutput;
 
 	// Shooter Constants
 	public static double intakeGrabSpeed = 10000; // in rpm
