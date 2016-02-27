@@ -20,8 +20,8 @@ public class RobotConstants {
 	public static boolean direction = true;
 	public static final boolean shooterDirection = true;
 	public static final boolean intakeDirection = false;
-	public static double Kp = 0*0.012;
-	public static double Ki = 0*0.0015;
+	public static double Kp = 0.012;
+	public static double Ki = 0.006;
 	public static double Kd = 0.0;
 	public static double iZone = 15.0;
 	public static double maximumIZoneSpeed = 0.3;

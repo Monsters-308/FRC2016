@@ -192,6 +192,10 @@ public class Chasis extends PIDSubsystem {
 		}
 		return input;
 	}
+	
+	public void setGyroPIDConstants(){
+		getPIDController().setPID(RobotConstants.Kp, 0, RobotConstants.Kd);
+	}
 
 	public void basicDrive(double power, double turn) {
 		if (turn == 0.0) { // driver isn't turning, keep the last angle

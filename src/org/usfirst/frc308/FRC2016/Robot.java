@@ -164,6 +164,7 @@ public class Robot extends IterativeRobot {
 		RobotConstants.armLowHeight = prefs.getDouble("arm low height", RobotConstants.armLowHeight);
 		RobotConstants.armHighHeight = prefs.getDouble("arm high height", RobotConstants.armHighHeight);
 		RobotConstants.cameraFieldOfView = prefs.getDouble("camera field of view", RobotConstants.cameraFieldOfView);
+		chasis.setGyroPIDConstants();
 	}
 
 	/**
