@@ -22,7 +22,8 @@ public class teleopLights extends Command {
 
 	@Override
 	protected void execute() {
-
+		Robot.lights.setTop(false, true);
+		Robot.lights.setBottom(false, false);
 	}
 
 	@Override
