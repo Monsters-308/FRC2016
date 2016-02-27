@@ -16,6 +16,7 @@ import org.usfirst.frc308.FRC2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -50,9 +51,19 @@ public class Arm extends Subsystem {
 		armMotor.setProfile(0);
 		armMotor.setPID(RobotConstants.armPIDKp, RobotConstants.armPIDKi, RobotConstants.armPIDKd,
 				RobotConstants.armPIDKf, RobotConstants.armPIDIZone, RobotConstants.armPIDRampRate, 0);
-		
+		armMotor.setEncPosition(3600);
+		armMotor.set(0);
+		armMotor.reverseOutput(true);
+		armMotor.reverseSensor(true);
 	}
 
+	public void displayArmData(){
+		SmartDashboard.putNumber("arm height", armMotor.getEncPosition());
+		SmartDashboard.putNumber("arm error", armMotor.getError());
+		SmartDashboard.putNumber("arm setpoint", armMotor.getSetpoint());
+		SmartDashboard.putNumber("arm power", armMotor.getOutputVoltage());
+	}
+	
 	/**
 	 * Sets arm position based on height
 	 * 

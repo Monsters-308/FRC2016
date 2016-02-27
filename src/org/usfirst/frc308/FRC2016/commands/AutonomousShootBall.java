@@ -22,6 +22,7 @@ public class AutonomousShootBall extends CommandGroup {
 		addSequential(new AutonomousRevUpMotor(0));
 		addSequential(new AutonomousSetIntake(0));
 		
+		
 		}
 
 }

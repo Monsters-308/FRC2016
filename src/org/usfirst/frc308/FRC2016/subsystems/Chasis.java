@@ -65,8 +65,16 @@ public class Chasis extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
+	public void resetEncoders(){
+		left1.setEncPosition(0);
+	}
+	
+	public double getPosition(){
+		return left1.getEncPosition();
+	}
+	
 	public void calibrateGyro() {
-		// gyro.calibrate();
+		gyro.calibrate();
 	}
 
 	public void setupBasicDrive() {
@@ -157,6 +165,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public double runRotatePID(double setpoint) {
+		SmartDashboard.putNumber("gyro setpoint", setpoint);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		double turn = 0.0;
@@ -184,6 +193,7 @@ public class Chasis extends Subsystem {
 	}
 
 	public void autonomousRotate() {
+		SmartDashboard.putNumber("gyro setpoint", setPoint);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		double turn = 0.0;
@@ -201,7 +211,9 @@ public class Chasis extends Subsystem {
 		SmartDashboard.putNumber("error", error);
 		if (Math.abs(error) < RobotConstants.iZone) { // if we're in the izone
 			IAccumulator = IAccumulator + error; // sum up error
-			if (RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator > RobotConstants.maximumIZoneSpeed) {
+			if (Math.abs(
+					RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator) > RobotConstants.maximumIZoneSpeed
+					&& RobotConstants.Ki != 0) {
 				IAccumulator = (RobotConstants.maximumIZoneSpeed - RobotConstants.Kp * error) / RobotConstants.Ki;
 			}
 		} else {
@@ -212,6 +224,7 @@ public class Chasis extends Subsystem {
 		}
 		double derivative = (error - lastError) / ((System.currentTimeMillis() - lastTime) / 1000.0);
 		turn = RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator + RobotConstants.Kd * derivative;
+		SmartDashboard.putNumber("commanded rotate", turn);
 		lastError = error;
 		lastTime = System.currentTimeMillis();
 		if (turn > 1.0) { // make sure turn isn't too high
@@ -231,12 +244,13 @@ public class Chasis extends Subsystem {
 	}
 
 	public void basicDrive(double power, double turn) {
+		SmartDashboard.putNumber("gyro setpoint", setPoint);
 		SmartDashboard.putNumber("turn commanded", turn);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
+		SmartDashboard.putNumber("chassis integral", IAccumulator);
 		if (turn == 0.0) { // driver isn't turning, keep the last angle
 			double error = gyro.getAngle() - setPoint;
-			SmartDashboard.putNumber("error", error);
 			// make sure error is between -180.0 and 180.0
 			if (error < -180.0) {
 				while (error < -180.0) {
@@ -247,19 +261,21 @@ public class Chasis extends Subsystem {
 					error -= 360.0;
 				}
 			}
+			SmartDashboard.putNumber("error", error);
 			if (turning == true) { // first time/initialize
-				setPoint = gyro.getAngle() + RobotConstants.rotateInertiaBias * gyro.getRate(); // make
-																								// setpoint
-																								// current
-																								// angle
+				setPoint = gyro.getAngle() + RobotConstants.rotateInertiaBias * gyro.getRate(); // TODO
+																								// update
 				IAccumulator = 0; // reset accumulator
 				turning = false; // we are no longer turning
 			} else { // after initializing
-				if (Math.abs(error) < RobotConstants.iZone) { // if we're in the
-																// izone
+				if (Math.abs(error) < RobotConstants.iZone && RobotConstants.Ki != 0) { // if
+																						// we're
+																						// in
+																						// the
+					// izone
 					IAccumulator = IAccumulator + error; // sum up error
-					if (RobotConstants.Kp * error
-							+ RobotConstants.Ki * IAccumulator > RobotConstants.maximumIZoneSpeed) {
+					if (Math.abs(RobotConstants.Kp * error
+							+ RobotConstants.Ki * IAccumulator) > RobotConstants.maximumIZoneSpeed) {
 						IAccumulator = (RobotConstants.maximumIZoneSpeed - RobotConstants.Kp * error)
 								/ RobotConstants.Ki;
 					}
