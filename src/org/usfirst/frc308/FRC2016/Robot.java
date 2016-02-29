@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
         server.setQuality(30);
         server.startAutomaticCapture("cam0");
 		
-		SmartDashboard.putData("Rotate PID Test", new AutonomousRotate(180.0));
+		SmartDashboard.putData("Rotate PID Test", new AutonomousRotate(45.0));
 		SmartDashboard.putData("Rotate to Target", new turnToTarget());
 		SmartDashboard.putData("Set Arm", new testArm());
 		SmartDashboard.putData("test shooter", new testShooter());

@@ -45,6 +45,7 @@ public class teleopDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.chasis.displayAccel();
 		int directionvalue = 1;
 		if(RobotConstants.direction == RobotConstants.intakeDirection) { 
 			directionvalue = -1; 

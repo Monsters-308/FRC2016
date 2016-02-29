@@ -1,6 +1,7 @@
 package org.usfirst.frc308.FRC2016.commands;
 
 import org.usfirst.frc308.FRC2016.Robot;
+import org.usfirst.frc308.FRC2016.RobotConstants;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
@@ -14,16 +15,19 @@ public class teleopLights extends Command {
 	@Override
 	protected void initialize() {
 		if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Blue) {
-			Robot.lights.setBottom(false, true);
-		} else if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Red) {
 			Robot.lights.setBottom(true, false);
+		} else if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Red) {
+			Robot.lights.setBottom(false, true);
 		}
 	}
 
 	@Override
 	protected void execute() {
-		Robot.lights.setTop(false, true);
-		Robot.lights.setBottom(false, false);
+		if (RobotConstants.direction) {
+			Robot.lights.setTop(false, true);
+		} else {
+			Robot.lights.setTop(true, false);
+		}
 	}
 
 	@Override
