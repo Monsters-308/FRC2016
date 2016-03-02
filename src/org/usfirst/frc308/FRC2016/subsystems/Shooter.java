@@ -130,7 +130,6 @@ public class Shooter extends Subsystem {
 				shootTimer.reset();
 			}
 		} else {
-			shootTimer.reset();
 			RobotConstants.introduceBall = false;
 			Robot.shooter.shootMotor1.set(0);
 		}
