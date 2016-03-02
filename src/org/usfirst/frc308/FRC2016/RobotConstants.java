@@ -70,7 +70,7 @@ public class RobotConstants {
 	
 
 	//vision Constants
-	public static double cameraFieldOfView = 64.0; //in degrees
+	public static double cameraFieldOfView = 15.0; //in degrees
 
 	public static boolean introduceBall = false;
 	

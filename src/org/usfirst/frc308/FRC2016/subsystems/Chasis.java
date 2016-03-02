@@ -184,6 +184,11 @@ public class Chasis extends PIDSubsystem {
 	}
 
 	public void autonomousRotate() {
+		if (left1.getEncVelocity() == 0 && right1.getEncVelocity() == 0
+				&& Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
+			gyro.reset();
+			getPIDController().setSetpoint(0);
+		}
 		double turn = RobotConstants.gyroPIDOutput;
 		left1.set(turn);
 		right1.set(turn);

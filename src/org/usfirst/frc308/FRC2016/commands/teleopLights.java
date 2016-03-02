@@ -28,7 +28,7 @@ public class teleopLights extends Command {
 
 	@Override
 	protected void execute() {
-		if (Robot.intake.getOpticalSensor() && ((int) t.get()) % 2 == 0) {
+		if (Robot.intake.getOpticalSensor() && ((int) (4.0 * t.get())) % 2 == 0) {
 			Robot.lights.setTop(false, false);
 		} else {
 			if (RobotConstants.direction) {
