@@ -112,6 +112,10 @@ public class Chasis extends PIDSubsystem {
 															// current angle
 		IAccumulator = 0; // reset accumulator
 	}
+	
+	public void setupAdvancedRotate(){
+		getPIDController().setPID(RobotConstants.Kp2, 0, RobotConstants.Kd2);
+	}
 
 	public void shiftUp() {
 		// Matteo
@@ -149,43 +153,37 @@ public class Chasis extends PIDSubsystem {
 		if (time < 0.5 * t) {
 			double psetpoint = (6.0 * time * time / t / t - 15.0 * time / t + 10.0) * p * time * time * time / t / t
 					/ t;
+			getPIDController().setSetpoint(psetpoint);
 			double vsetpoint = (30.0 * time * time / t / t - 60.0 * time / t + 30.0) * p * time * time / t / t / t;
 			double asetpoint = (120.0 * time * time / t / t - 180.0 * time / t + 60.0) * p * time / t / t / t;
-			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + runRotatePID(psetpoint);
-			left1.set(-output);
-			right1.set(-output);
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + RobotConstants.gyroPIDOutput;
+			left1.set(output);
+			right1.set(output);
 		} else if (time < 0.5 * t + ct) {
 			double psetpoint = 0.5 * p + (time - 0.5 * t) * v;
+			getPIDController().setSetpoint(psetpoint);
 			double vsetpoint = v;
 			double asetpoint = 0;
-			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + runRotatePID(psetpoint);
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + RobotConstants.gyroPIDOutput;
 			left1.set(-output);
 			right1.set(-output);
 		} else if (time < t + ct) {
 			time -= ct;
 			double psetpoint = ct * v
 					+ (6.0 * time * time / t / t - 15.0 * time / t + 10.0) * p * time * time * time / t / t / t;
+			getPIDController().setSetpoint(psetpoint);
 			double vsetpoint = (30.0 * time * time / t / t - 60.0 * time / t + 30.0) * p * time * time / t / t / t;
 			double asetpoint = (120.0 * time * time / t / t - 180.0 * time / t + 60.0) * p * time / t / t / t;
-			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + runRotatePID(psetpoint);
-			left1.set(-output);
-			right1.set(-output);
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + RobotConstants.gyroPIDOutput;
+			left1.set(output);
+			right1.set(output);
 		} else {
 			left1.set(0);
 			right1.set(0);
 		}
 	}
 
-	public double runRotatePID(double setpoint) {
-		SmartDashboard.putNumber("angle", gyro.getAngle());
-		SmartDashboard.putNumber("rotation speed", gyro.getRate());
-		// TODO
-		return 0.0;
-	}
-
 	public void autonomousRotate() {
-		SmartDashboard.putNumber("angle", gyro.getAngle());
-		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		double turn = RobotConstants.gyroPIDOutput;
 		left1.set(turn);
 		right1.set(turn);
@@ -230,8 +228,6 @@ public class Chasis extends PIDSubsystem {
 
 	@Override
 	protected double returnPIDInput() {
-		SmartDashboard.putNumber("angle", gyro.getAngle());
-		SmartDashboard.putNumber("rotation speed", gyro.getRate());
 		error = getPIDController().getSetpoint() - gyro.getAngle();
 		if (error < -180.0) {
 			while (error < -180.0) {
@@ -254,7 +250,6 @@ public class Chasis extends PIDSubsystem {
 			IAccumulator = 0;
 		}
 		lastError = error;
-		SmartDashboard.putNumber("gyro error", error);
 		return gyro.getAngle();
 	}
 
@@ -287,10 +282,18 @@ public class Chasis extends PIDSubsystem {
 		return left1.getEncPosition();
 	}
 
-	public void displayAccel() {
+	public void displayChasisData() {
 		SmartDashboard.putNumber("accel x",accel.getX());
 		SmartDashboard.putNumber("accel y",accel.getY());
 		SmartDashboard.putNumber("accel z",accel.getZ());
+		SmartDashboard.putNumber("robot position", left1.getEncPosition());
+		SmartDashboard.putNumber("angle", gyro.getAngle());
+		SmartDashboard.putNumber("rotation speed", gyro.getRate());
+		SmartDashboard.putNumber("gyro error", error);
+	}
+
+	public void setupNormalRotate() {
+		getPIDController().setPID(RobotConstants.Kp, 0, RobotConstants.Kd);
 	}
 
 }

@@ -28,7 +28,7 @@ public class RobotConstants {
 	public static double rotateInertiaBias = 0.15;
 	public static double gyroPIDErrorTolerance = 1.0; //in degrees
 	public static double gyroPIDVelocityTolerance = 0.5; //in degrees/second
-	public static double Kv = 0.0;
+	public static double Kv = 1.0/90.0; // 1/maximum
 	public static double Ka = 0.0;
 	public static double Kp2 = 0.0;
 	public static double Ki2 = 0.0;
