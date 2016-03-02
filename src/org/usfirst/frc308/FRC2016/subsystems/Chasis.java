@@ -194,6 +194,11 @@ public class Chasis extends PIDSubsystem {
 	}
 
 	public void basicDrive(double power, double turn) {
+		if (left1.getEncVelocity() == 0 && right1.getEncVelocity() == 0
+				&& Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
+			gyro.reset();
+			getPIDController().setSetpoint(0);
+		}
 		if (turn == 0.0) { // driver isn't turning, keep the last angle
 			if (turning == true) { // first time/initialize
 				setPointTimer.start();
