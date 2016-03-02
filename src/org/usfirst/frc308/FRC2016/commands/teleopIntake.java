@@ -4,6 +4,7 @@ import org.usfirst.frc308.FRC2016.Robot;
 import org.usfirst.frc308.FRC2016.RobotConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class teleopIntake extends Command {
 
@@ -23,7 +24,10 @@ public class teleopIntake extends Command {
 		// TODO Auto-generated method stub
 		// if buttonB is pressed, call runIntakeMotor()
 		Robot.intake.displayOpticalSensorData();
-
+		
+		SmartDashboard.putBoolean("test123", RobotConstants.introduceBall);
+		SmartDashboard.putBoolean("test124", Robot.oi.joystick2.getRawButton(RobotConstants.runIntakeMotor));
+		
 		if (RobotConstants.introduceBall) {
 			Robot.intake.setIntake(RobotConstants.intakeShooterSpeed);
 		} else if (Robot.oi.joystick2.getRawButton(RobotConstants.runIntakeMotor)) {

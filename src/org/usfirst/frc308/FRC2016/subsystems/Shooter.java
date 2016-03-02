@@ -122,11 +122,13 @@ public class Shooter extends Subsystem {
 				shootTimer.start();
 			}
 			Robot.shooter.shootMotor1.set(RobotConstants.shooterSpeed);
-		} else if (Math
-				.abs(RobotConstants.shooterSpeed
-						- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance
-				&& shootTimer.get() > 2.0) {
-			RobotConstants.introduceBall = true;
+		} else if (Math.abs(RobotConstants.shooterSpeed
+				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
+			if (shootTimer.get() > 2.0) {
+				RobotConstants.introduceBall = true;
+				shootTimer.stop();
+				shootTimer.reset();
+			}
 		} else {
 			shootTimer.reset();
 			RobotConstants.introduceBall = false;
