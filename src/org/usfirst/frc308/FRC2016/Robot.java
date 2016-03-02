@@ -78,11 +78,12 @@ public class Robot extends IterativeRobot {
         server.setQuality(30);
         server.startAutomaticCapture("cam0");
 		
-		SmartDashboard.putData("Rotate PID Test", new AutonomousRotate(180.0));
+		SmartDashboard.putData("Rotate PID Test", new AutonomousRotate(45.0));
 		SmartDashboard.putData("Rotate to Target", new turnToTarget());
 		SmartDashboard.putData("Set Arm", new testArm());
 		SmartDashboard.putData("test shooter", new testShooter());
 		SmartDashboard.putData("Calibrate Gyro", new calibrateGyro());
+		SmartDashboard.putData("Advanced Rotate PID", new AutonomousAdvancedRotate(45.0,80.0,90.0));
 		prefs = Preferences.getInstance();
 		prefs.putDouble("chasis kp", RobotConstants.Kp);
 		prefs.putDouble("chasis ki", RobotConstants.Ki);
@@ -164,6 +165,7 @@ public class Robot extends IterativeRobot {
 		RobotConstants.armLowHeight = prefs.getDouble("arm low height", RobotConstants.armLowHeight);
 		RobotConstants.armHighHeight = prefs.getDouble("arm high height", RobotConstants.armHighHeight);
 		RobotConstants.cameraFieldOfView = prefs.getDouble("camera field of view", RobotConstants.cameraFieldOfView);
+		chasis.setGyroPIDConstants();
 	}
 
 	/**

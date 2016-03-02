@@ -31,6 +31,7 @@ public class AutonomousTimedDrive extends Command {
 
 	@Override
 	protected void execute() {
+		Robot.chasis.displayChasisData();
 		Robot.chasis.basicDrive(power, 0);
 	}
 

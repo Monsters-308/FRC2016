@@ -25,6 +25,7 @@ public class AutonomousAdvancedRotate extends Command {
 	@Override
 	protected void initialize() {
 		Robot.chasis.setupBasicDrive();
+		Robot.chasis.setupAdvancedRotate();
 		// if we wont get up to the robot's max speed before we start slowing
 		if (128.0 * v * v / (45.0 * Math.sqrt(3.0) * a) >= p) {
 			// calculate the highest speed we will reach
@@ -45,12 +46,13 @@ public class AutonomousAdvancedRotate extends Command {
 
 	@Override
 	protected void execute() {
+		Robot.chasis.displayChasisData();
 		Robot.chasis.autonomousAdvancedRotate(timer.get(), p, t, ct, v);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if (timer.get() <= t + ct + 1.0) {
+		if (timer.get() >= t + ct + 1.0) {
 			return true;
 		} else {
 			return false;
@@ -59,6 +61,7 @@ public class AutonomousAdvancedRotate extends Command {
 
 	@Override
 	protected void end() {
+		Robot.chasis.setupNormalRotate();
 		Robot.chasis.basicDrive(0, 0);
 		timer.stop();
 	}
