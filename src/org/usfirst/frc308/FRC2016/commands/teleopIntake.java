@@ -25,9 +25,6 @@ public class teleopIntake extends Command {
 		// if buttonB is pressed, call runIntakeMotor()
 		Robot.intake.displayOpticalSensorData();
 		
-		SmartDashboard.putBoolean("test123", RobotConstants.introduceBall);
-		SmartDashboard.putBoolean("test124", Robot.oi.joystick2.getRawButton(RobotConstants.runIntakeMotor));
-		
 		if (RobotConstants.introduceBall) {
 			Robot.intake.setIntake(RobotConstants.intakeShooterSpeed);
 		} else if (Robot.oi.joystick2.getRawButton(RobotConstants.runIntakeMotor)) {

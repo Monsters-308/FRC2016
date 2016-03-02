@@ -64,6 +64,18 @@ public class Arm extends Subsystem {
 		SmartDashboard.putNumber("arm power", armMotor.getOutputVoltage());
 	}
 	
+	public void setCalibrationMode(){
+		armMotor.changeControlMode(TalonControlMode.PercentVbus);
+	}
+	
+	public void setPIDMode(){
+		armMotor.changeControlMode(TalonControlMode.Position);
+	}
+	
+	public void setArm(double power){
+		armMotor.set(power);
+	}
+	
 	/**
 	 * Sets arm position based on height
 	 * 

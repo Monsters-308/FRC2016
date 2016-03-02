@@ -63,6 +63,7 @@ public class RobotConstants {
 	public static int armPIDIZone = 0;
 	public static double armPIDRampRate = 0.0;
 	public static double armMaxSpeed = 0.001;
+	public static boolean calibrationMode = false;
 	
 	//Joysick Constants
 	public static double deadZone = 0.1;
