@@ -10,6 +10,7 @@
 
 package org.usfirst.frc308.FRC2016.subsystems;
 
+import org.usfirst.frc308.FRC2016.Robot;
 import org.usfirst.frc308.FRC2016.RobotConstants;
 import org.usfirst.frc308.FRC2016.RobotMap;
 import org.usfirst.frc308.FRC2016.commands.*;
@@ -57,25 +58,29 @@ public class Arm extends Subsystem {
 		armMotor.reverseSensor(true);
 	}
 
-	public void displayArmData(){
+	public void displayArmData() {
 		SmartDashboard.putNumber("arm height", armMotor.getEncPosition());
 		SmartDashboard.putNumber("arm error", armMotor.getError());
 		SmartDashboard.putNumber("arm setpoint", armMotor.getSetpoint());
 		SmartDashboard.putNumber("arm power", armMotor.getOutputVoltage());
 	}
-	
-	public void setCalibrationMode(){
+
+	public void setCalibrationMode() {
 		armMotor.changeControlMode(TalonControlMode.PercentVbus);
 	}
-	
-	public void setPIDMode(){
+
+	public void setPIDMode() {
 		armMotor.changeControlMode(TalonControlMode.Position);
 	}
-	
-	public void setArm(double power){
+
+	public void setArm(double power) {
 		armMotor.set(power);
 	}
-	
+
+	public void resetArm() {
+		armMotor.setEncPosition((int) RobotConstants.armLowHeight);
+	}
+
 	/**
 	 * Sets arm position based on height
 	 * 

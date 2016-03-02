@@ -47,6 +47,9 @@ public class telopArm extends Command {
 		// read joystick arm axis and pass it to setArmPosition() function
 		if (Robot.oi.joystick2.getRawButton(9)) {
 			RobotConstants.calibrationMode = !RobotConstants.calibrationMode;
+			if(RobotConstants.calibrationMode == false){
+				Robot.arm.resetArm();
+			}
 		}
 		if (RobotConstants.calibrationMode) {
 			Robot.arm.setCalibrationMode();
