@@ -4,26 +4,31 @@ import org.usfirst.frc308.FRC2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class testArm extends Command{
-	
-	public testArm(){
-		requires(Robot.arm);
+public class AutonomousShift extends Command {
+
+	boolean State;
+
+	public AutonomousShift(boolean state) {
+		requires(Robot.chasis);
+		State = state;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.arm.setupArmMotor();
-		Robot.arm.setArmPosition(1.0);
+		if (State) {
+			Robot.chasis.shiftUp();
+		} else {
+			Robot.chasis.shiftDown();
+		}
 	}
 
 	@Override
 	protected void execute() {
-		Robot.arm.displayArmData();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -32,6 +37,7 @@ public class testArm extends Command{
 
 	@Override
 	protected void interrupted() {
+		end();
 	}
 
 }

@@ -40,7 +40,7 @@ public class telopArm extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.arm.setupArmMotor();
+		Robot.arm.initArm();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -51,12 +51,12 @@ public class telopArm extends Command {
 			RobotConstants.calibrationMode = !RobotConstants.calibrationMode;
 			if(RobotConstants.calibrationMode == false){
 				Robot.arm.resetArm();
-				Robot.arm.setupArmMotor();
+				Robot.arm.resetupArm();
 			} else {
 				Robot.arm.setCalibrationMode();
 			}
 			pressed = true;
-		} else if (!Robot.oi.joystick2.getRawButton(9)){
+		} else if (!Robot.oi.joystick2.getRawButton(5)){
 			pressed = false;
 		}
 		if (RobotConstants.calibrationMode) {

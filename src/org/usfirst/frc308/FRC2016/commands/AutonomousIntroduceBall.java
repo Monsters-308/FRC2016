@@ -32,7 +32,7 @@ public class AutonomousIntroduceBall extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		if (Robot.intake.getOpticalSensor() == true && intakeTimer.get() != 0) {
+		if (Robot.intake.getOpticalSensor() && intakeTimer.get() != 0) {
 			intakeTimer.start();
 		}
         if (intakeTimer.get() > 2) {

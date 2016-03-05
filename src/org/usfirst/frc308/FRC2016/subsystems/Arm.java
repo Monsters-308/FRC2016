@@ -46,8 +46,8 @@ public class Arm extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
-
-	public void setupArmMotor() {
+	
+	public void initArm(){
 		armMotor.changeControlMode(TalonControlMode.Position);
 		armMotor.setProfile(0);
 		armMotor.setPID(RobotConstants.armPIDKp, RobotConstants.armPIDKi, RobotConstants.armPIDKd,
@@ -58,10 +58,22 @@ public class Arm extends Subsystem {
 		armMotor.reverseSensor(true);
 	}
 
+	public void resetupArm() {
+		armMotor.changeControlMode(TalonControlMode.Position);
+		armMotor.setProfile(0);
+		armMotor.setPID(RobotConstants.armPIDKp, RobotConstants.armPIDKi, RobotConstants.armPIDKd,
+				RobotConstants.armPIDKf, RobotConstants.armPIDIZone, RobotConstants.armPIDRampRate, 0);
+		armMotor.set(0);
+		armMotor.reverseOutput(true);
+		armMotor.reverseSensor(true);
+	}
+
 	public void displayArmData() {
 		SmartDashboard.putNumber("arm height", armMotor.getEncPosition());
 		SmartDashboard.putNumber("arm error", armMotor.getError());
 		SmartDashboard.putNumber("arm setpoint", armMotor.getSetpoint());
+		SmartDashboard.putNumber("arm adjusted setpoint", getArmSetpoint());
+		SmartDashboard.putNumber("arm joystick", Robot.oi.joystick2.getZ());
 		SmartDashboard.putNumber("arm power", armMotor.getOutputVoltage());
 	}
 
@@ -96,5 +108,10 @@ public class Arm extends Subsystem {
 														// (0 to (high-low)) to
 														// (low to high)
 		armMotor.set(height);
+	}
+
+	public double getArmSetpoint() {
+		return -((armMotor.getSetpoint() - RobotConstants.armLowHeight)
+				/ (RobotConstants.armHighHeight - RobotConstants.armLowHeight) * 2.0 - 1.0);
 	}
 }

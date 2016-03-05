@@ -5,6 +5,7 @@ import org.usfirst.frc308.FRC2016.RobotConstants;
 import org.usfirst.frc308.FRC2016.RobotMap;
 import org.usfirst.frc308.FRC2016.commands.teleopIntake;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
@@ -13,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake extends Subsystem {
 	private final CANTalon intakeMotor = RobotMap.intakeMotor;
-	private final DigitalInput intakeOpticalSensor = RobotMap.intakeopticalsensor;
+	private final AnalogInput intakeOpticalSensor = RobotMap.intakeopticalsensor;
 
 	public void setupIntake() {
 		intakeMotor.changeControlMode(TalonControlMode.Speed);
@@ -23,7 +24,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void displayOpticalSensorData() {
-		SmartDashboard.putBoolean("low sensor", intakeOpticalSensor.get());
+		SmartDashboard.putNumber("optical sensor", intakeOpticalSensor.getAverageVoltage());
 		SmartDashboard.putNumber("intake power", intakeMotor.getOutputVoltage());
 		SmartDashboard.putNumber("intake speed", intakeMotor.getEncVelocity());
 	}
@@ -44,11 +45,7 @@ public class Intake extends Subsystem {
 	public void runIntakeMotor() {
 		// if highOpticalSensor is false
 		// set intakeMotor to constant intakeGrabSpeed
-		if (intakeOpticalSensor.get() == false) {
 			Robot.intake.intakeMotor.set(RobotConstants.intakeGrabSpeed);
-		} else {
-			Robot.intake.intakeMotor.set(0);
-		}
 	}
 
 	public void ejectBall() {
@@ -57,15 +54,15 @@ public class Intake extends Subsystem {
 		Robot.intake.intakeMotor.set(-RobotConstants.intakeGrabSpeed);
 
 	}
-	
+
 	public void setIntake(double intakePower) {
 		intakeMotor.set(intakePower);
 	}
-	
-	public boolean getOpticalSensor(){
-		return intakeOpticalSensor.get();
+
+	public boolean getOpticalSensor() {
+		return intakeOpticalSensor.getAverageVoltage() <= 2.0;
 	}
-	
+
 	// else set intakeMotor to 0
 
 	@Override

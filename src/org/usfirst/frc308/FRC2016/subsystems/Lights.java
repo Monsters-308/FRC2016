@@ -14,13 +14,13 @@ public class Lights extends Subsystem {
 	DigitalOutput bottomLights2 = RobotMap.bottomlights2;
 	
 	public void setTop(boolean red, boolean green) {
-		topLights.set(!red);
-		topLights2.set(!green);
+		topLights.set(red);
+		topLights2.set(green);
 	}
 
 	public void setBottom(boolean red, boolean blue) {
-		bottomLights.set(!red);
-		bottomLights2.set(!blue);
+		bottomLights.set(red);
+		bottomLights2.set(blue);
 	}
 
 	@Override

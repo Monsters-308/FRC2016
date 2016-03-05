@@ -10,19 +10,17 @@
 
 package org.usfirst.frc308.FRC2016.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
-import org.usfirst.frc308.FRC2016.Robot;
 
 /**
  *
  */
-public class AutonomousCommand extends CommandGroup {
+public class AutonomousRoughTerrain extends CommandGroup {
 
-	public AutonomousCommand() {
+	public AutonomousRoughTerrain() {
+		addSequential(new AutonomousShift(false));
 		addParallel(new AutonomousSetPlatform(true));
-		addSequential(new AutonomousTimedDrive(-0.7, 3.0));
+		addSequential(new AutonomousTimedDrive(-1.0, 4.0));
 	}
 
 }
