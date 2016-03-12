@@ -45,13 +45,17 @@ public class Intake extends Subsystem {
 	public void runIntakeMotor() {
 		// if highOpticalSensor is false
 		// set intakeMotor to constant intakeGrabSpeed
+		if (!getOpticalSensor()) {
 			Robot.intake.intakeMotor.set(RobotConstants.intakeGrabSpeed);
+		} else {
+			Robot.intake.intakeMotor.set(0);
+		}
 	}
 
 	public void ejectBall() {
 		// set intakeMotor to negative intakeEjectSpeed
 
-		Robot.intake.intakeMotor.set(-RobotConstants.intakeGrabSpeed);
+		Robot.intake.intakeMotor.set(-3.0*RobotConstants.intakeGrabSpeed);
 
 	}
 

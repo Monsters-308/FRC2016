@@ -35,7 +35,7 @@ public class RobotConstants {
 	public static double Kd2 = 0.0;
 
 	// Shooter Constants
-	public static double intakeGrabSpeed = 9000; // in rpm
+	public static double intakeGrabSpeed = 3000; // in rpm
 	public static double intakeAdjustSpeed = 3000; // in rpm
 	public static double intakeShooterSpeed = 6300.0;
 	public static double intakePIDKp = 0.12;
