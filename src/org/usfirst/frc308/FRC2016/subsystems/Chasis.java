@@ -306,4 +306,13 @@ public class Chasis extends PIDSubsystem {
 		getPIDController().setPID(RobotConstants.Kp, 0, RobotConstants.Kd);
 	}
 
+	public void setBrakes(boolean state) {
+		left1.enableBrakeMode(state);
+		left2.enableBrakeMode(state);
+		left3.enableBrakeMode(state);
+		right1.enableBrakeMode(state);
+		right2.enableBrakeMode(state);
+		right3.enableBrakeMode(state);
+	}
+
 }

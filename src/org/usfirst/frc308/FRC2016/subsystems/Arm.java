@@ -46,8 +46,8 @@ public class Arm extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
-	
-	public void initArm(){
+
+	public void initArm() {
 		armMotor.changeControlMode(TalonControlMode.Position);
 		armMotor.setProfile(0);
 		armMotor.setPID(RobotConstants.armPIDKp, RobotConstants.armPIDKi, RobotConstants.armPIDKd,
@@ -91,6 +91,17 @@ public class Arm extends Subsystem {
 
 	public void resetArm() {
 		armMotor.setEncPosition((int) RobotConstants.armLowHeight);
+	}
+
+	public void resetArmIntegral(){
+		armMotor.ClearIaccum();
+	}
+	
+	public boolean isNearEdge() {
+		if (Math.abs(getArmSetpoint()) > 0.9) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

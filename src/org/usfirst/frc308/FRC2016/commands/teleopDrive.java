@@ -51,6 +51,12 @@ public class teleopDrive extends Command {
 			directionvalue = -1; 
 			
 		} 
+		
+		if(Robot.oi.joystick1.getRawButton(RobotConstants.chasisBrakeButton)){
+			Robot.chasis.setBrakes(true);
+		} else {
+			Robot.chasis.setBrakes(false);
+		}
 	
 		// TODO
 		// if direction equals shooterDirection, call basicDrive normally

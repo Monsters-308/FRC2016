@@ -63,6 +63,9 @@ public class telopArm extends Command {
 			Robot.arm.setArm(Robot.oi.joystick2.getZ());
 		} else {
 			Robot.arm.setArmPosition(Robot.oi.joystick2.getZ());
+			if(Robot.arm.isNearEdge()){
+				Robot.arm.resetArmIntegral();
+			}
 		}
 	}
 
