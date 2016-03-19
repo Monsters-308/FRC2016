@@ -83,8 +83,8 @@ public class Shooter extends Subsystem {
 	public void setupShooter() {
 		shootMotor1.changeControlMode(TalonControlMode.Speed);
 		shootMotor1.setProfile(0);
-		shootMotor1.setPID(RobotConstants.shooterPIDKp, RobotConstants.shooterPIDKi, RobotConstants.shooterPIDKd,
-				RobotConstants.shooterPIDKf, RobotConstants.shooterPIDIZone, RobotConstants.shooterPIDRampRate, 0);
+		/**shootMotor1.setPID(RobotConstants.shooterPIDKp, RobotConstants.shooterPIDKi, RobotConstants.shooterPIDKd,
+				RobotConstants.shooterPIDKf, RobotConstants.shooterPIDIZone, RobotConstants.shooterPIDRampRate, 0);**/
 		shootMotor2.changeControlMode(TalonControlMode.Follower);
 		shootMotor2.set(10);
 
@@ -130,7 +130,7 @@ public class Shooter extends Subsystem {
 				shootTimer.stop();
 				shootTimer.reset();
 			}
-		} else {
+		} else {  /** Within shooting tolerance, SHOOT! **/
 			RobotConstants.introduceBall = false;
 			Robot.shooter.shootMotor1.set(0);
 		}
