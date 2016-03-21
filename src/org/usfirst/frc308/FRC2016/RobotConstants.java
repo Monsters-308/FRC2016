@@ -14,6 +14,7 @@ public class RobotConstants {
 	public static int shootBallHigh = 1;
 	public static int runIntakeMotor = 2;
 	public static int ejectBall = 4;
+	public static int gateRoll = 9;
 	
 
 	// Chassis Constants
