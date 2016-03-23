@@ -89,6 +89,9 @@ public class RobotMap {
 		sweeperMotor = new CANTalon(16);
 		LiveWindow.addActuator("Sweeper", "sweeperMotor", sweeperMotor);
 
+		sweeperMotor = new CANTalon(16);
+		LiveWindow.addActuator("Intake", "sweeperMotor", sweeperMotor);
+		
 		armarmMotor = new CANTalon(15);
 		LiveWindow.addActuator("Arm", "armMotor", armarmMotor);
 

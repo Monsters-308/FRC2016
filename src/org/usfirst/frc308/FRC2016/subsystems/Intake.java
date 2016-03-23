@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake extends Subsystem {
+	private final CANTalon sweeperMotor = RobotMap.sweeperMotor;
 	private final CANTalon intakeMotor = RobotMap.intakeMotor;
 	private final AnalogInput intakeOpticalSensor = RobotMap.intakeopticalsensor;
 	private final CANTalon sweeperMotor = RobotMap.sweeperMotor;
@@ -53,14 +54,20 @@ public class Intake extends Subsystem {
 		if (!getOpticalSensor()) {
 			Robot.intake.intakeMotor.set(RobotConstants.intakeGrabSpeed);
 		} else {
-			Robot.intake.intakeMotor.set(0);
+			Robot.intake.intakeMotor.set(0); } 
 		}
+
+	public void runSweeperMotor() {
+			Robot.intake.sweeperMotor.set(RobotConstants.intakeGrabSpeed);}
+	
+	public void gateRoll() {
+		    Robot.intake.sweeperMotor.set(-RobotConstants.intakeGrabSpeed);
 	}
 
 	public void ejectBall() {
 		// set intakeMotor to negative intakeEjectSpeed
 
-		Robot.intake.intakeMotor.set(-3.0*RobotConstants.intakeGrabSpeed);
+		Robot.intake.intakeMotor.set(-3.0 * RobotConstants.intakeGrabSpeed);
 
 	}
 
