@@ -48,11 +48,12 @@ public class AutonomousRotate extends Command {
 		timer = new Timer();
 		timer.start();
 		Robot.chasis.setupBasicDrive();
-		Robot.chasis.setRotatePID(setpointAngle);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.chasis.displayChasisData();
+		Robot.chasis.setRotatePIDlight(setpointAngle * timer.get() / t);
 		Robot.chasis.autonomousRotate();
 	}
 

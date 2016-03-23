@@ -88,9 +88,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Rotate PID Test", new AutonomousRotate(45.0, 10));
 		SmartDashboard.putData("Rotate to Target", new turnToTarget());
 		SmartDashboard.putData("test Arm", new AutonomousSetArm(-0.9, 3.0));
-		SmartDashboard.putData("test Shooter", new testShooter());
+		SmartDashboard.putData("Shoot Shooter", new AutonomousShootBall());
 		SmartDashboard.putData("Calibrate Gyro", new calibrateGyro());
-		SmartDashboard.putData("Advanced Rotate PID", new AutonomousAdvancedRotate(45.0, 80.0, 90.0));
+		SmartDashboard.putData("Approach Goal", new AutonomousApproachGoal());
 		prefs = Preferences.getInstance();
 		prefs.putDouble("chasis kp", RobotConstants.Kp);
 		prefs.putDouble("chasis ki", RobotConstants.Ki);

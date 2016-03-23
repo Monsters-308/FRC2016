@@ -45,6 +45,16 @@ public class visionProcessing extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerX", new double[0]);
+		double[] targets2 = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerY", new double[0]);
+		if(targets.length > 0){
+			SmartDashboard.putNumber("cernterX", targets[0]);
+			SmartDashboard.putNumber("cernterY", targets2[0]);
+		} else {
+			SmartDashboard.putNumber("cernterX", -1);
+			SmartDashboard.putNumber("cernterY", -1);
+		}
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

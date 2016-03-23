@@ -22,7 +22,7 @@ public class RobotConstants {
 	public static final boolean shooterDirection = true;
 	public static final boolean intakeDirection = false;
 	public static double Kp = 0.012;
-	public static double Ki = 0.006;
+	public static double Ki = 0.0025;
 	public static double Kd = 0.0;
 	public static double iZone = 15.0;
 	public static double maximumIZoneSpeed = 0.3;
@@ -36,7 +36,7 @@ public class RobotConstants {
 	public static double Kd2 = 0.0;
 
 	// Shooter Constants
-	public static double intakeGrabSpeed = 1500; // in rpm
+	public static double intakeGrabSpeed = 6000; // in rpm
 	public static double intakeAdjustSpeed = 3000; // in rpm
 	public static double intakeShooterSpeed = 8200.0;
 	public static double intakePIDKp = 0.12;
@@ -46,8 +46,8 @@ public class RobotConstants {
 	public static int intakePIDIZone = 500;
 	public static double intakePIDRampRate = 0.0;
 	public static double shooterSpeed = 17000.0;
-	public static double shooterTolerance = 500.0; // units?
-	public static double shooterPIDKp = 0.07;
+	public static double shooterTolerance = 100.0; // units?
+	public static double shooterPIDKp = 0.1;
 	public static double shooterPIDKi = 0.00013;
 	public static double shooterPIDKd = 0.0;
 	public static double shooterPIDKf = 1023.0/27000.0; //1023/maximumspeed

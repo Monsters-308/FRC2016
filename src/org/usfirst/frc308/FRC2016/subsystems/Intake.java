@@ -15,12 +15,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Intake extends Subsystem {
 	private final CANTalon intakeMotor = RobotMap.intakeMotor;
 	private final AnalogInput intakeOpticalSensor = RobotMap.intakeopticalsensor;
-
+	private final CANTalon sweeperMotor = RobotMap.sweeperMotor;
+	
 	public void setupIntake() {
 		intakeMotor.changeControlMode(TalonControlMode.Speed);
 		intakeMotor.setProfile(0);
 		intakeMotor.setPID(RobotConstants.intakePIDKp, RobotConstants.intakePIDKi, RobotConstants.intakePIDKd,
 				RobotConstants.intakePIDKf, RobotConstants.intakePIDIZone, RobotConstants.intakePIDRampRate, 0);
+		intakeMotor.reverseSensor(true);
+		sweeperMotor.changeControlMode(TalonControlMode.Follower);
+		sweeperMotor.reverseOutput(true);
+		sweeperMotor.set(12);
 	}
 
 	public void displayOpticalSensorData() {

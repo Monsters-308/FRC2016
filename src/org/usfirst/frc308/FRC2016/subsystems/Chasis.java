@@ -110,6 +110,7 @@ public class Chasis extends PIDSubsystem {
 		gyro.reset();
 		getPIDController().setSetpoint(0); // make setpoint
 															// current angle
+		getPIDController().enable();
 		IAccumulator = 0; // reset accumulator
 	}
 	
@@ -137,6 +138,10 @@ public class Chasis extends PIDSubsystem {
 		getPIDController().setSetpoint(angleSetPoint);
 		IAccumulator = 0; // reset accumulator
 
+	}
+	
+	public void setRotatePIDlight(double angleSetPoint){
+		getPIDController().setSetpoint(angleSetPoint);
 	}
 
 	public boolean isOnTarget() {
@@ -184,11 +189,6 @@ public class Chasis extends PIDSubsystem {
 	}
 
 	public void autonomousRotate() {
-		if (left1.getEncVelocity() == 0 && right1.getEncVelocity() == 0
-				&& Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
-			gyro.reset();
-			getPIDController().setSetpoint(0);
-		}
 		double turn = RobotConstants.gyroPIDOutput;
 		left1.set(turn);
 		right1.set(turn);
@@ -219,6 +219,7 @@ public class Chasis extends PIDSubsystem {
 			} else if (setPointTimer.get() != 0) {
 				if (setPointTimer.get() >= 1.0) {
 					enablePID();
+					gyro.reset();
 					getPIDController().setSetpoint(gyro.getAngle());
 					setPointTimer.stop();
 					setPointTimer.reset();
@@ -299,7 +300,7 @@ public class Chasis extends PIDSubsystem {
 		SmartDashboard.putNumber("robot position", left1.getEncPosition());
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());
-		SmartDashboard.putNumber("gyro error", error);
+		SmartDashboard.putNumber("gyro error", getPIDController().getError());
 	}
 
 	public void setupNormalRotate() {

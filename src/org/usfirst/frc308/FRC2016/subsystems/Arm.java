@@ -85,6 +85,14 @@ public class Arm extends Subsystem {
 		armMotor.changeControlMode(TalonControlMode.Position);
 	}
 
+	public void setEnabled(boolean flag){
+		if(flag){
+			armMotor.enable();
+		} else {
+			armMotor.disable();
+		}
+	}
+	
 	public void setArm(double power) {
 		armMotor.set(power);
 	}
