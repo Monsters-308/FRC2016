@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class AutonomousGoalDrive extends Command {
 
 	double power;
+	Timer timeout;
 
 	/**
 	 * starts a command that drives robot for a specific amount of time
@@ -25,6 +26,7 @@ public class AutonomousGoalDrive extends Command {
 
 	@Override
 	protected void initialize() {
+		timeout = new Timer();
 		Robot.chasis.setupBasicDrive();
 	}
 
@@ -37,7 +39,18 @@ public class AutonomousGoalDrive extends Command {
 	@Override
 	protected boolean isFinished() {
 		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerY", new double[0]);
-		if (targets.length > 0 && targets[0] <= 65) {
+		double[] targets3 = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("area", new double[0]);
+		int biggestTarget = Robot.vision.getLargestIndex(targets3);
+		if (targets.length == 0 && timeout.get() == 0) {
+			timeout.start();
+		} else if (targets.length > 0 && timeout.get() != 0) {
+			timeout.stop();
+			timeout.reset();
+		}
+		if (timeout.get() > 2.0) {
+			return true;
+		}
+		if (targets.length > 0 && targets[biggestTarget] <= 95) {
 			return true;
 		}
 		return false;

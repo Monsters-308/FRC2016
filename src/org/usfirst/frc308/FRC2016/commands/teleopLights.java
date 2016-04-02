@@ -29,12 +29,12 @@ public class teleopLights extends Command {
 	@Override
 	protected void execute() {
 		if (Robot.intake.getOpticalSensor() && ((int) (4.0 * t.get())) % 2 == 0) {
-			Robot.lights.setTop(false, false);
+			Robot.lights.setTop(false, true);
 		} else {
 			if (RobotConstants.direction) {
-				Robot.lights.setTop(false, true);
+				Robot.lights.setTop(true, true);
 			} else {
-				Robot.lights.setTop(true, false);
+				Robot.lights.setTop(false, false);
 			}
 		}
 	}

@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -57,7 +58,7 @@ public class Chasis extends PIDSubsystem {
 	private final Solenoid shifter = RobotMap.pneumaticsshifter;
 
 	BuiltInAccelerometer accel;
-	
+
 	public Chasis() {
 		super("Drivetrain", RobotConstants.Kp, 0, RobotConstants.Kd);
 		setAbsoluteTolerance(RobotConstants.gyroPIDErrorTolerance);
@@ -98,6 +99,8 @@ public class Chasis extends PIDSubsystem {
 		right2.set(1);
 		right3.changeControlMode(TalonControlMode.Follower);
 		right3.set(1);
+		left1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		right1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 
 		right1.reverseOutput(false);
 		SmartDashboard.putBoolean("rightreversed", true);
@@ -109,12 +112,12 @@ public class Chasis extends PIDSubsystem {
 
 		gyro.reset();
 		getPIDController().setSetpoint(0); // make setpoint
-															// current angle
+											// current angle
 		getPIDController().enable();
 		IAccumulator = 0; // reset accumulator
 	}
-	
-	public void setupAdvancedRotate(){
+
+	public void setupAdvancedRotate() {
 		getPIDController().setPID(RobotConstants.Kp2, 0, RobotConstants.Kd2);
 	}
 
@@ -139,8 +142,9 @@ public class Chasis extends PIDSubsystem {
 		IAccumulator = 0; // reset accumulator
 
 	}
-	
-	public void setRotatePIDlight(double angleSetPoint){
+
+	public void setRotatePIDlight(double angleSetPoint) {
+		gyro.reset();
 		getPIDController().setSetpoint(angleSetPoint);
 	}
 
@@ -161,7 +165,8 @@ public class Chasis extends PIDSubsystem {
 			getPIDController().setSetpoint(psetpoint);
 			double vsetpoint = (30.0 * time * time / t / t - 60.0 * time / t + 30.0) * p * time * time / t / t / t;
 			double asetpoint = (120.0 * time * time / t / t - 180.0 * time / t + 60.0) * p * time / t / t / t;
-			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + RobotConstants.gyroPIDOutput;
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint
+					+ RobotConstants.gyroPIDOutput;
 			left1.set(output);
 			right1.set(output);
 		} else if (time < 0.5 * t + ct) {
@@ -169,7 +174,8 @@ public class Chasis extends PIDSubsystem {
 			getPIDController().setSetpoint(psetpoint);
 			double vsetpoint = v;
 			double asetpoint = 0;
-			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + RobotConstants.gyroPIDOutput;
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint
+					+ RobotConstants.gyroPIDOutput;
 			left1.set(-output);
 			right1.set(-output);
 		} else if (time < t + ct) {
@@ -179,7 +185,8 @@ public class Chasis extends PIDSubsystem {
 			getPIDController().setSetpoint(psetpoint);
 			double vsetpoint = (30.0 * time * time / t / t - 60.0 * time / t + 30.0) * p * time * time / t / t / t;
 			double asetpoint = (120.0 * time * time / t / t - 180.0 * time / t + 60.0) * p * time / t / t / t;
-			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint + RobotConstants.gyroPIDOutput;
+			double output = RobotConstants.Kv * vsetpoint + RobotConstants.Ka * asetpoint
+					+ RobotConstants.gyroPIDOutput;
 			left1.set(output);
 			right1.set(output);
 		} else {
@@ -189,6 +196,13 @@ public class Chasis extends PIDSubsystem {
 	}
 
 	public void autonomousRotate() {
+		if (Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
+			gyro.reset();
+			getPIDController().setSetpoint(0);
+			left1.set(0);
+			right1.set(0);
+			return;
+		}
 		double turn = RobotConstants.gyroPIDOutput;
 		left1.set(turn);
 		right1.set(turn);
@@ -200,16 +214,18 @@ public class Chasis extends PIDSubsystem {
 		}
 		return input;
 	}
-	
-	public void setGyroPIDConstants(){
+
+	public void setGyroPIDConstants() {
 		getPIDController().setPID(RobotConstants.Kp, 0, RobotConstants.Kd);
 	}
 
 	public void basicDrive(double power, double turn) {
-		if (left1.getEncVelocity() == 0 && right1.getEncVelocity() == 0
-				&& Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
+		if (Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh) || RobotConstants.shooting) {
 			gyro.reset();
 			getPIDController().setSetpoint(0);
+			left1.set(0);
+			right1.set(0);
+			return;
 		}
 		if (turn == 0.0) { // driver isn't turning, keep the last angle
 			if (turning == true) { // first time/initialize
@@ -294,9 +310,9 @@ public class Chasis extends PIDSubsystem {
 	}
 
 	public void displayChasisData() {
-		SmartDashboard.putNumber("accel x",accel.getX());
-		SmartDashboard.putNumber("accel y",accel.getY());
-		SmartDashboard.putNumber("accel z",accel.getZ());
+		SmartDashboard.putNumber("accel x", accel.getX());
+		SmartDashboard.putNumber("accel y", accel.getY());
+		SmartDashboard.putNumber("accel z", accel.getZ());
 		SmartDashboard.putNumber("robot position", left1.getEncPosition());
 		SmartDashboard.putNumber("angle", gyro.getAngle());
 		SmartDashboard.putNumber("rotation speed", gyro.getRate());

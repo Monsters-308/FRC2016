@@ -54,7 +54,7 @@ public class teleopShooter extends Command {
 			Robot.shooter.setLift(false);
 		}
 		if(Robot.oi.joystick2.getRawButton(3)){
-			new turnToTarget().start();
+			new turnToTarget(false).start();
 		}
 		// if buttonA is pressed, call shootBall]
 		if (Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {

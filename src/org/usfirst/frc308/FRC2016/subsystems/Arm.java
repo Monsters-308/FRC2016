@@ -58,11 +58,21 @@ public class Arm extends Subsystem {
 		armMotor.reverseSensor(true);
 	}
 
+	public void resetupArmLight() {
+		armMotor.changeControlMode(TalonControlMode.Position);
+		armMotor.setProfile(0);
+		armMotor.setPID(RobotConstants.armPIDKp, RobotConstants.armPIDKi, RobotConstants.armPIDKd,
+				RobotConstants.armPIDKf, RobotConstants.armPIDIZone, RobotConstants.armPIDRampRate, 0);
+		armMotor.reverseOutput(true);
+		armMotor.reverseSensor(true);
+	}
+	
 	public void resetupArm() {
 		armMotor.changeControlMode(TalonControlMode.Position);
 		armMotor.setProfile(0);
 		armMotor.setPID(RobotConstants.armPIDKp, RobotConstants.armPIDKi, RobotConstants.armPIDKd,
 				RobotConstants.armPIDKf, RobotConstants.armPIDIZone, RobotConstants.armPIDRampRate, 0);
+		armMotor.setEncPosition(3600);
 		armMotor.set(0);
 		armMotor.reverseOutput(true);
 		armMotor.reverseSensor(true);
@@ -95,10 +105,6 @@ public class Arm extends Subsystem {
 	
 	public void setArm(double power) {
 		armMotor.set(power);
-	}
-
-	public void resetArm() {
-		armMotor.setEncPosition((int) RobotConstants.armLowHeight);
 	}
 
 	public void resetArmIntegral(){

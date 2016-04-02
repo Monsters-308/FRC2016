@@ -8,6 +8,7 @@ import org.usfirst.frc308.FRC2016.commands.teleopIntake;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,9 +17,9 @@ public class Intake extends Subsystem {
 	private final CANTalon sweeperMotor = RobotMap.sweeperMotor;
 	private final CANTalon intakeMotor = RobotMap.intakeMotor;
 	private final AnalogInput intakeOpticalSensor = RobotMap.intakeopticalsensor;
-	private final CANTalon sweeperMotor = RobotMap.sweeperMotor;
-	
+
 	public void setupIntake() {
+		intakeMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		intakeMotor.changeControlMode(TalonControlMode.Speed);
 		intakeMotor.setProfile(0);
 		intakeMotor.setPID(RobotConstants.intakePIDKp, RobotConstants.intakePIDKi, RobotConstants.intakePIDKd,
@@ -30,6 +31,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void displayOpticalSensorData() {
+		SmartDashboard.putNumber("sweeper", sweeperMotor.getOutputVoltage());
 		SmartDashboard.putNumber("optical sensor", intakeOpticalSensor.getAverageVoltage());
 		SmartDashboard.putNumber("intake power", intakeMotor.getOutputVoltage());
 		SmartDashboard.putNumber("intake speed", intakeMotor.getEncVelocity());
@@ -54,14 +56,12 @@ public class Intake extends Subsystem {
 		if (!getOpticalSensor()) {
 			Robot.intake.intakeMotor.set(RobotConstants.intakeGrabSpeed);
 		} else {
-			Robot.intake.intakeMotor.set(0); } 
+			Robot.intake.intakeMotor.set(0);
 		}
+	}
 
-	public void runSweeperMotor() {
-			Robot.intake.sweeperMotor.set(RobotConstants.intakeGrabSpeed);}
-	
 	public void gateRoll() {
-		    Robot.intake.sweeperMotor.set(-RobotConstants.intakeGrabSpeed);
+		Robot.intake.sweeperMotor.set(-RobotConstants.intakeGrabSpeed);
 	}
 
 	public void ejectBall() {

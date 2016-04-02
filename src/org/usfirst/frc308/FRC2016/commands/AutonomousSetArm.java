@@ -21,7 +21,7 @@ public class AutonomousSetArm extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.arm.resetupArm();
+		Robot.arm.resetupArmLight();
 		s = Robot.arm.getArmSetpoint();
 		timer.start();
 	}

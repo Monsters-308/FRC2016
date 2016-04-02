@@ -50,7 +50,6 @@ public class telopArm extends Command {
 		if (Robot.oi.joystick2.getRawButton(5) && pressed == false) {
 			RobotConstants.calibrationMode = !RobotConstants.calibrationMode;
 			if (RobotConstants.calibrationMode == false) {
-				Robot.arm.resetArm();
 				Robot.arm.resetupArm();
 			} else {
 				Robot.arm.setCalibrationMode();
