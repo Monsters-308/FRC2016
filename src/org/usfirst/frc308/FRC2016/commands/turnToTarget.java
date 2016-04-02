@@ -48,6 +48,7 @@ public class turnToTarget extends Command {
 	}
 
 	public void initialize() {
+		RobotConstants.isAiming = true;
 		double[] defaultValue = new double[0];
 		double[] defaultValue2 = new double[0];
 		double[] defaultValue3 = new double[0];
@@ -59,11 +60,11 @@ public class turnToTarget extends Command {
 		if (targets.length > 0) {
 			SmartDashboard.putNumber("centerX", targets[biggestTarget]);
 			SmartDashboard.putNumber("centerY", targets2[biggestTarget]);
-			setpointAngle = (targets[biggestTarget] - 115.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
+			setpointAngle = (targets[biggestTarget] - 130.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
 			if (retry) {
-				t = 2;
+				t = 1;
 			} else {
-				t = 3;
+				t = 2;
 			}
 			timer.start();
 			Robot.chasis.setupBasicDrive();
@@ -88,8 +89,8 @@ public class turnToTarget extends Command {
 		if (targets.length > 0) {
 			SmartDashboard.putNumber("centerX", targets[biggestTarget]);
 			SmartDashboard.putNumber("centerY", targets2[biggestTarget]);
-			setpointAngle = (targets[biggestTarget] - 115.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
-			t = 2;
+			setpointAngle = (targets[biggestTarget] - 130.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
+			t = 1;
 			timer.start();
 			Robot.chasis.setRotatePIDlight(setpointAngle);
 		} else {
@@ -103,22 +104,26 @@ public class turnToTarget extends Command {
 		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerX", new double[0]);
 		double[] targets3 = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("area", new double[0]);
 		int biggestTarget = Robot.vision.getLargestIndex(targets3);
+		if (targets.length == 0) {
+			pass = false;
+		}
 		if (!pass) {
-			if (retry) {
+			if (retry || Robot.oi.joystick2.getRawButton(3)) {
 				reInit();
 			} else {
 				return true;
 			}
 		} else if (timer.get() > t) {
-			if (!retry) {
+			if (!retry && !Robot.oi.joystick2.getRawButton(3)) {
 				return true;
-			} else if (targets.length > 0 && Math.abs(targets[biggestTarget] - 115) <= 20 && retry) {
+			} else if (targets.length > 0 && Math.abs(targets[biggestTarget] - 130) <= 10) {
 				return true;
 			} else {
 				reInit();
 			}
 		}
 		return false;
+
 	}
 
 	@Override
@@ -129,6 +134,7 @@ public class turnToTarget extends Command {
 
 	@Override
 	protected void end() {
+		RobotConstants.isAiming = false;
 	}
 
 	@Override

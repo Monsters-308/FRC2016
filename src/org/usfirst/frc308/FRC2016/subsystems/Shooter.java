@@ -43,10 +43,7 @@ public class Shooter extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
-	Timer shootTimer;
-
 	public Shooter() {
-		shootTimer = new Timer();
 	}
 
 	public void initDefaultCommand() {
@@ -91,8 +88,7 @@ public class Shooter extends Subsystem {
 	}
 
 	public boolean isOnTarget(double targetSpeed) {
-		if (Math.abs(RobotConstants.shooterSpeed
-				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
+		if (Math.abs(RobotConstants.shooterSpeed - shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
 			return true;
 		} else {
 			return false;
@@ -115,24 +111,16 @@ public class Shooter extends Subsystem {
 
 		/* ADD PNEUMATIC OBJECT AND CODE TO TO LOCK THE SHOOTING BAFFLE */
 
-		if (Math.abs(RobotConstants.shooterSpeed
-				- Robot.shooter.shootMotor1.getEncVelocity()) >= RobotConstants.shooterTolerance) {
-			if (Robot.shooter.shootMotor1.getSetpoint() == 0) {
-				shootTimer.stop();
-				shootTimer.reset();
-				shootTimer.start();
-			}
-			Robot.shooter.shootMotor1.set(RobotConstants.shooterSpeed);
-		} else if (Math.abs(RobotConstants.shooterSpeed
-				- Robot.shooter.shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
-			//if (shootTimer.get() > 2.0) {
-				RobotConstants.introduceBall = true;
-				shootTimer.stop();
-				shootTimer.reset();
-			//}
-		} else {  /** Within shooting tolerance, SHOOT! **/
+		if (Math.abs(RobotConstants.shooterSpeed - shootMotor1.getEncVelocity()) >= RobotConstants.shooterTolerance) {
+			shootMotor1.set(RobotConstants.shooterSpeed);
+		} else if (Math
+				.abs(RobotConstants.shooterSpeed - shootMotor1.getEncVelocity()) < RobotConstants.shooterTolerance) {
+			// Within shooting tolerance, SHOOT!
+			RobotConstants.introduceBall = true;
+		} else {
+			// Stop shooting
 			RobotConstants.introduceBall = false;
-			Robot.shooter.shootMotor1.set(0);
+			shootMotor1.set(0);
 		}
 	}
 
@@ -153,7 +141,6 @@ public class Shooter extends Subsystem {
 	 *            true = up false = down
 	 */
 	public void setBaffle(boolean state) {
-		Robot.shooter.shooterBaffle.set(state);
-
+		shooterBaffle.set(state);
 	}
 }

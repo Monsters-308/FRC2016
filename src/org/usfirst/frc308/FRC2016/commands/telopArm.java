@@ -61,7 +61,7 @@ public class telopArm extends Command {
 		if (RobotConstants.calibrationMode) {
 			Robot.arm.setArm(Robot.oi.joystick2.getZ());
 		} else {
-			if (Robot.oi.joystick2.getRawButton(1)) {
+			if (Robot.oi.joystick2.getRawButton(1) && !RobotConstants.isAiming) {
 				Robot.arm.setEnabled(false);
 			} else {
 				Robot.arm.setEnabled(true);

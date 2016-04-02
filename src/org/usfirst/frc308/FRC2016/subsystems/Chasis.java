@@ -196,7 +196,7 @@ public class Chasis extends PIDSubsystem {
 	}
 
 	public void autonomousRotate() {
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh)) {
+		if (Robot.oi.joystick2.getRawButton(RobotConstants.shootBallHigh) && !RobotConstants.isAiming) {
 			gyro.reset();
 			getPIDController().setSetpoint(0);
 			left1.set(0);
