@@ -60,15 +60,16 @@ public class turnToTarget extends Command {
 		if (targets.length > 0) {
 			SmartDashboard.putNumber("centerX", targets[biggestTarget]);
 			SmartDashboard.putNumber("centerY", targets2[biggestTarget]);
-			setpointAngle = (targets[biggestTarget] - 130.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
-			if (retry) {
-				t = 1;
-			} else {
-				t = 2;
-			}
+			setpointAngle = (targets[biggestTarget] - 135.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
+			t = 3;
 			timer.start();
 			Robot.chasis.setupBasicDrive();
 			Robot.chasis.setRotatePID(setpointAngle);
+			if (setpointAngle > 0) {
+				Robot.chasis.setIAccumulator((0.05 - RobotConstants.Kp * setpointAngle) / RobotConstants.Ki);
+			} else if (setpointAngle < 0) {
+				Robot.chasis.setIAccumulator((-0.05 - RobotConstants.Kp * setpointAngle) / RobotConstants.Ki);
+			}
 		} else {
 			pass = false;
 			SmartDashboard.putNumber("centerX", -1);
@@ -89,10 +90,15 @@ public class turnToTarget extends Command {
 		if (targets.length > 0) {
 			SmartDashboard.putNumber("centerX", targets[biggestTarget]);
 			SmartDashboard.putNumber("centerY", targets2[biggestTarget]);
-			setpointAngle = (targets[biggestTarget] - 130.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
-			t = 1;
+			setpointAngle = (targets[biggestTarget] - 135.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
+			t = 3;
 			timer.start();
-			Robot.chasis.setRotatePIDlight(setpointAngle);
+			Robot.chasis.setRotatePID(setpointAngle);
+			if (setpointAngle > 0) {
+				Robot.chasis.setIAccumulator((0.05 - RobotConstants.Kp * setpointAngle) / RobotConstants.Ki);
+			} else if (setpointAngle < 0) {
+				Robot.chasis.setIAccumulator((-0.05 - RobotConstants.Kp * setpointAngle) / RobotConstants.Ki);
+			}
 		} else {
 			pass = false;
 			SmartDashboard.putNumber("centerX", -1);
@@ -113,10 +119,10 @@ public class turnToTarget extends Command {
 			} else {
 				return true;
 			}
-		} else if (timer.get() > t) {
+		} else if (timer.get() > t || Robot.chasis.isSettled()) {
 			if (!retry && !Robot.oi.joystick2.getRawButton(3)) {
 				return true;
-			} else if (targets.length > 0 && Math.abs(targets[biggestTarget] - 130) <= 10) {
+			} else if (targets.length > 0 && Math.abs(targets[biggestTarget] - 135) <= 10) {
 				return true;
 			} else {
 				reInit();

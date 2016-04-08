@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("test Arm", new AutonomousSetArm(-0.9, 3.0));
 		SmartDashboard.putData("Shoot Shooter", new AutonomousShootBall());
 		SmartDashboard.putData("Calibrate Gyro", new calibrateGyro());
-		SmartDashboard.putData("Approach Goal", new AutonomousApproachGoal());
+		SmartDashboard.putData("Approach Goal", new AutonomousTrajectoryFollower());
 		prefs = Preferences.getInstance();
 		prefs.putDouble("chasis kp", RobotConstants.Kp);
 		prefs.putDouble("chasis ki", RobotConstants.Ki);
