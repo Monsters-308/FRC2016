@@ -22,11 +22,11 @@ public class RobotConstants {
 	public static boolean direction = true;
 	public static final boolean shooterDirection = true;
 	public static final boolean intakeDirection = false;
-	public static double Kp = 0.012;
-	public static double Ki = 0.0025;
+	public static double Kp = 0.015; //0.012
+	public static double Ki = 0.0015; //0.0025
 	public static double Kd = 0.0;
 	public static double iZone = 15.0;
-	public static double maximumIZoneSpeed = 0.3;
+	public static double maximumIZoneSpeed = 1.0;
 	public static double rotateInertiaBias = 0.15;
 	public static double gyroPIDErrorTolerance = 1.0; //in degrees
 	public static double gyroPIDVelocityTolerance = 0.5; //in degrees/second
@@ -36,6 +36,7 @@ public class RobotConstants {
 	public static double Ki2 = 0.0;
 	public static double Kd2 = 0.0;
 	public static boolean isAiming = false;
+	public static boolean isTrajectory = false;
 
 	// Shooter Constants
 	public static boolean shooting = false;
@@ -48,7 +49,7 @@ public class RobotConstants {
 	public static double intakePIDKf = 1023.0/6300.0; //1023/maximumspeed
 	public static int intakePIDIZone = 500;
 	public static double intakePIDRampRate = 0.0;
-	public static double shooterSpeed = 12000.0; //TODO 17000
+	public static double shooterSpeed = 11500.0; //TODO 17000
 	public static double shooterTolerance = 300.0; // units?
 	public static double shooterPIDKp = 0.4;
 	public static double shooterPIDKi = 0.00004;

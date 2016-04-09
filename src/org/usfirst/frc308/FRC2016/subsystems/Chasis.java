@@ -237,6 +237,9 @@ public class Chasis extends PIDSubsystem {
 		if (Math.abs(right) > 1.0) {
 			right /= Math.abs(right);
 		}
+		SmartDashboard.putNumber("left power", left);
+		SmartDashboard.putNumber("right power", right);
+		SmartDashboard.putNumber("pid turn", RobotConstants.gyroPIDOutput);
 		left1.set(left + RobotConstants.gyroPIDOutput);
 		right1.set(-(right - RobotConstants.gyroPIDOutput));
 	}
@@ -287,7 +290,8 @@ public class Chasis extends PIDSubsystem {
 				error -= 360.0;
 			}
 		}
-		if (Math.abs(error) < RobotConstants.iZone && error * lastError > 0) {
+		if (Math.abs(error) < RobotConstants.iZone
+				&& (RobotConstants.isTrajectory || error * lastError > 0)) {
 			IAccumulator += error;
 			if (RobotConstants.Kp * error + RobotConstants.Ki * IAccumulator > RobotConstants.maximumIZoneSpeed) {
 				IAccumulator = (RobotConstants.maximumIZoneSpeed - RobotConstants.Kp * error) / RobotConstants.Ki;

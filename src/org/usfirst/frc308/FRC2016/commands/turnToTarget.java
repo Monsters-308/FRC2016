@@ -60,7 +60,7 @@ public class turnToTarget extends Command {
 		if (targets.length > 0) {
 			SmartDashboard.putNumber("centerX", targets[biggestTarget]);
 			SmartDashboard.putNumber("centerY", targets2[biggestTarget]);
-			setpointAngle = (targets[biggestTarget] - 135.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
+			setpointAngle = (targets[biggestTarget] - 150.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
 			t = 3;
 			timer.start();
 			Robot.chasis.setupBasicDrive();
@@ -90,7 +90,7 @@ public class turnToTarget extends Command {
 		if (targets.length > 0) {
 			SmartDashboard.putNumber("centerX", targets[biggestTarget]);
 			SmartDashboard.putNumber("centerY", targets2[biggestTarget]);
-			setpointAngle = (targets[biggestTarget] - 135.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
+			setpointAngle = (targets[biggestTarget] - 150.0) / 120.0 * (0.5 * RobotConstants.cameraFieldOfView);
 			t = 3;
 			timer.start();
 			Robot.chasis.setRotatePID(setpointAngle);
@@ -122,7 +122,7 @@ public class turnToTarget extends Command {
 		} else if (timer.get() > t || Robot.chasis.isSettled()) {
 			if (!retry && !Robot.oi.joystick2.getRawButton(3)) {
 				return true;
-			} else if (targets.length > 0 && Math.abs(targets[biggestTarget] - 135) <= 10) {
+			} else if (targets.length > 0 && Math.abs(targets[biggestTarget] - 150) <= 10) {
 				return true;
 			} else {
 				reInit();

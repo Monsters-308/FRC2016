@@ -121,6 +121,7 @@ public class Shooter extends Subsystem {
 			// Stop shooting
 			RobotConstants.introduceBall = false;
 			shootMotor1.set(0);
+			Robot.chasis.setIAccumulator(0);
 		}
 	}
 

@@ -47,7 +47,7 @@ public class visionProcessing extends Command {
 	protected void execute() {
 		double[] targets = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerX", new double[0]);
 		double[] targets2 = NetworkTable.getTable("GRIP/myContoursReport").getNumberArray("centerY", new double[0]);
-		if(targets.length > 0){
+		if(targets.length > 0 && targets2.length > 0){
 			SmartDashboard.putNumber("cernterX", targets[0]);
 			SmartDashboard.putNumber("cernterY", targets2[0]);
 		} else {

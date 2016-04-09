@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.usfirst.frc308.FRC2016.Robot;
+import org.usfirst.frc308.FRC2016.RobotConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,6 +16,7 @@ import jaci.pathfinder.modifiers.TankModifier;
 
 public class AutonomousTrajectoryFollower extends Command {
 
+	edu.wpi.first.wpilibj.Timer timeout;
 	Timer t;
 	EncoderFollower left;
 	EncoderFollower right;
@@ -25,7 +27,10 @@ public class AutonomousTrajectoryFollower extends Command {
 
 	@Override
 	protected void initialize() {
-		Waypoint[] points = new Waypoint[] { new Waypoint(0, 0, 0), new Waypoint(20, 20, 1.3) };
+		timeout = new edu.wpi.first.wpilibj.Timer();
+		timeout.start();
+		RobotConstants.isTrajectory = true;
+		Waypoint[] points = new Waypoint[] { new Waypoint(0, 0, 0), new Waypoint(25, 20, 0.9) };
 
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
 				Trajectory.Config.SAMPLES_LOW, 0.05, 8.0, 2.0, 60.0);
@@ -47,8 +52,8 @@ public class AutonomousTrajectoryFollower extends Command {
 		left.configureEncoder(Robot.chasis.getLeftEncoderPosition(), 1000, 7.5 / 12.0);
 		right.configureEncoder(-Robot.chasis.getRightEncoderPosition(), 1000, 7.5 / 12.0);
 
-		left.configurePIDVA(0.1, 0.0, 0.0, 1 / 9.0, 0);
-		right.configurePIDVA(0.1, 0.0, 0.0, 1 / 9.0, 0);
+		left.configurePIDVA(0.1, 0.0, 0.0, 1 / 8.0, 0);
+		right.configurePIDVA(0.1, 0.0, 0.0, 1 / 8.0, 0);
 		Robot.chasis.setRotatePID(0);
 		t = new Timer();
 		t.schedule(new TimerTask() {
@@ -60,7 +65,6 @@ public class AutonomousTrajectoryFollower extends Command {
 				double desired_heading = Pathfinder.r2d(left.getHeading());
 				Robot.chasis.setSetpoint(desired_heading / 4.0);
 				Robot.chasis.setDrive(l, r);
-				SmartDashboard.putNumber("left heading", Pathfinder.r2d(left.getHeading()));
 			}
 		}, 0, 50);
 	}
@@ -72,7 +76,7 @@ public class AutonomousTrajectoryFollower extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if (left.isFinished() || right.isFinished()) {
+		if (left.isFinished() || right.isFinished() || timeout.get() > 5.5) {
 			return true;
 		}
 		return false;
@@ -80,7 +84,12 @@ public class AutonomousTrajectoryFollower extends Command {
 
 	@Override
 	protected void end() {
+		timeout.stop();
+		timeout.reset();
+		
 		t.cancel();
+		Robot.chasis.setRotatePID(0.0);
+		RobotConstants.isTrajectory = false;
 	}
 
 	@Override
