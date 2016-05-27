@@ -8,13 +8,10 @@ public class RobotConstants {
 	public static int chasisShiftUpButton = 10;
 	public static int chasisShiftDownButton = 9;
 	public static int chasisReverseDirectionButton = 3;
-	public static int chasisBrakeButton = 1;
-
-	// Joystick 2 Buttons
+	public static int chasisBrakeButton = 6;
 	public static int shootBallHigh = 1;
 	public static int runIntakeMotor = 2;
 	public static int ejectBall = 4;
-	public static int gateRoll = 9;
 	
 
 	// Chassis Constants

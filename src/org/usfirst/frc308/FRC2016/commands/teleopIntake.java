@@ -31,8 +31,6 @@ public class teleopIntake extends Command {
 			Robot.intake.runIntakeMotor();
 		} else if (Robot.oi.joystick2.getRawButton(RobotConstants.ejectBall)) {
 			Robot.intake.ejectBall();
-		} else if (Robot.oi.joystick2.getRawButton(RobotConstants.gateRoll)){
-			Robot.intake.gateRoll();
 		} else {
 			Robot.intake.setIntake(0);
 		}
