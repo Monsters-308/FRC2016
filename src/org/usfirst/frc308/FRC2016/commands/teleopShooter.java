@@ -47,10 +47,10 @@ public class teleopShooter extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.shooter.displayOpticalSensorData();
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.platformShiftUpButton)) {
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftUpButton)) {
 			Robot.shooter.setLift(true);
 		}
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.platformShiftDownButton)) {
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.platformShiftDownButton)) {
 			Robot.shooter.setLift(false);
 		}
 		if (Robot.oi.joystick2.getRawButton(3)) {

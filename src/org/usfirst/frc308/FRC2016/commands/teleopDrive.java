@@ -52,7 +52,7 @@ public class teleopDrive extends Command {
 			
 		} 
 		
-		if(Robot.oi.joystick2.getRawButton(RobotConstants.chasisBrakeButton)){
+		if(Robot.oi.joystick1.getRawButton(RobotConstants.chasisBrakeButton)){
 			Robot.chasis.setBrakes(true);
 		} else {
 			Robot.chasis.setBrakes(false);
@@ -62,18 +62,18 @@ public class teleopDrive extends Command {
 		// if direction equals shooterDirection, call basicDrive normally
 		// if direction equals intakeDirection, call basicDrive with -1 *
 		// joystick.getY()
-		Robot.chasis.basicDrive(Robot.chasis.deadZone(directionvalue*Robot.oi.joystick2.getY()),
-				Robot.chasis.deadZone(Robot.oi.joystick2.getX()));
+		Robot.chasis.basicDrive(Robot.chasis.deadZone(directionvalue*Robot.oi.joystick1.getY()),
+				Robot.chasis.deadZone(Robot.oi.joystick1.getX()));
 
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.chasisShiftUpButton) == true) {
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.chasisShiftUpButton) == true) {
 			Robot.chasis.shiftUp();
 
-		} else if (Robot.oi.joystick2.getRawButton(RobotConstants.chasisShiftDownButton) == true) {
+		} else if (Robot.oi.joystick1.getRawButton(RobotConstants.chasisShiftDownButton) == true) {
 			Robot.chasis.shiftDown();
 		}
 		// if reverseDirectionButton is pressed and directionToggleCheck is
 		// false,
-		if (Robot.oi.joystick2.getRawButton(RobotConstants.chasisReverseDirectionButton) == true
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.chasisReverseDirectionButton) == true
 				&& directionToggleCheck == false) {
 			// if direction equals shooterDirection, set direction equal to
 			// intakeDirection
@@ -88,7 +88,7 @@ public class teleopDrive extends Command {
 			directionToggleCheck = true;
 			// else if reverseDirectionButton is not pressed, set
 			// directionToggleCheck to false
-		} else if (Robot.oi.joystick2.getRawButton(RobotConstants.chasisReverseDirectionButton) == false) {
+		} else if (Robot.oi.joystick1.getRawButton(RobotConstants.chasisReverseDirectionButton) == false) {
 			directionToggleCheck = false;
 		}
 	}
